@@ -6,13 +6,13 @@ import { Button } from "@nextui-org/button"
 import { Image as NextUiImage } from "@nextui-org/image"
 import next from "next"
 import { ArrowBigDown, ArrowBigUp, MessageSquareText } from "lucide-react"
+import { Counter } from "@/src/components/counter"
 
 
 const page = () => {
   return (
     <div>
       <HeroSection />
-
       <div>
         <div className="max-w-[800px] mx-auto my-10 rounded-lg bg-gradient-to-t from-[#A8BFFF] to-[#884D80]">
           <div className="flex justify-between items-center p-5 pb-0">

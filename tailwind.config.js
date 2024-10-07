@@ -17,6 +17,9 @@ module.exports = {
         gradient: "linear-gradient(to top, #d9afd9 0%, #884D80 100%)",
         gradientSecondary: "linear-gradient(to top, #A8BFFF 0%, #884D80 100%)",
       },
+      colors: {
+        solid: "#884D80",
+      },
     },
   },
   darkMode: "class",

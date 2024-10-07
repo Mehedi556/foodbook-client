@@ -1,12 +1,20 @@
 import React from 'react'
+import LeftSidebar from '../components/LeftSidebar'
+import RightSidebar from '../components/RightSidebar'
 
-const AdminLayout = ({children}: {children: React.ReactNode}) => {
+const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
-        <p>admin navbar</p>
+    <div className='grid grid-cols-12 bg-gradient min-h-screen'>
+      <div className='col-span-3 border-r-1 border-[#884D80] sticky top-0 h-screen'>
+        <LeftSidebar />
+      </div>
+      <div className='col-span-6 border-r-1 border-[#884D80]'>
         {children}
-        <p>admin footer</p>
-        </div>
+      </div>
+      <div className='col-span-3 sticky top-0 h-screen'>
+        <RightSidebar />
+      </div>
+    </div>
   )
 }
 

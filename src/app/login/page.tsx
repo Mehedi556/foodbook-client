@@ -1,15 +1,17 @@
 "use client"
 import { Button } from '@nextui-org/button'
 import { Link } from '@nextui-org/link'
-import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import logo from '@/src/assets/logo.png'
 import Image from 'next/image'
 import { zodResolver } from "@hookform/resolvers/zod";
 import loginValidationSchema from '@/src/schemas/login.schema'
 import { useUserLogin } from '@/src/hooks/auth.hook'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Loading from '@/src/components/Loading'
+import { useEffect } from 'react'
+import { useUser } from '@/src/context/user.provider'
+import ForgotPasswordModal from '../components/login/ForgotPasswordModal'
 
 type Inputs = {
   email: string;
@@ -18,7 +20,21 @@ type Inputs = {
 
 const LoginPage = () => {
   const router = useRouter()
+  const { setIsLoading: userLoading } = useUser();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get('redirect');
   const { mutate: handleLogin, data, isPending, isSuccess } = useUserLogin();
+
+  useEffect(() => {
+    if (!isPending && isSuccess) {
+      if (redirect) {
+        router.push(redirect)
+      } else {
+        router.push('/')
+      }
+    }
+  }, [isPending, isSuccess])
+
   const {
     register,
     handleSubmit,
@@ -26,11 +42,12 @@ const LoginPage = () => {
   } = useForm<Inputs>({ resolver: zodResolver(loginValidationSchema) })
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     handleLogin(data);
+    userLoading(true)
   }
 
-  if (!isPending && isSuccess) {
-    router.push('/')
-  }
+
+
+
 
 
   return (
@@ -64,15 +81,24 @@ const LoginPage = () => {
                 </p>
               )}
 
-
-              <Button type="submit"
+              <div>
+                <Button type="submit"
                 className="w-full px-4 py-3 font-semibold text-white bg-[#884D80]  hover:bg-gradient rounded-lg  transition ease-in-out duration-300">Sign
                 In</Button>
+                <p className="text-xs font-light text-gray-500 text-center mt-1">
+                  Don’t have an account yet? <Link href="/signup" className="text-sm font-medium text-blue-500 hover:underline ">Sign up</Link>
+                </p>
+              </div>
+              
+
+              <div>
+                <p className="text-xs font-light text-gray-500 text-center mb-1">
+                  Forget password?
+                </p>
+                <div className=""><ForgotPasswordModal /></div>
+              </div>
 
 
-              <p className="text-xs font-light text-gray-500 text-center">
-                Don’t have an account yet? <Link href="/signup" className="text-sm font-medium text-blue-500 hover:underline ">Sign up</Link>
-              </p>
             </form>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import envConfig from '@/src/config/envConfig';
+import { getNewAccessToken } from '@/src/services/AuthService';
 import axios from 'axios'
 import { cookies } from 'next/headers';
 
@@ -27,12 +28,12 @@ axiosInstance.interceptors.request.use(function (config) {
     if(error?.response?.status === 401 && !config?.sent){
       config.sent = true;
 
-    //   const res = await getNewAccessToken();
-    //   const accessToken = res?.data?.accessToken;
+      const res = await getNewAccessToken();
+      const accessToken = res?.data?.accessToken;
 
-    //   config.headers['Authorization'] = accessToken;
+      config.headers['Authorization'] = accessToken;
 
-    //   cookies().set('accessToken', accessToken)
+      cookies().set('accessToken', accessToken)
 
       return axiosInstance(config)
     } else {
