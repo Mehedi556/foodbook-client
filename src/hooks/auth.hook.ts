@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
-import { addFollow, loginUser, registerUser, resetPassword, updateUser } from "../services/AuthService";
+import { addFollow, blockOrUnblockUser, deleteUser, loginUser, registerUser, resetPassword, updateUser } from "../services/AuthService";
 import { IUserForUpdate } from "../types";
 
 
@@ -66,3 +66,29 @@ export const useResetPassword = () => {
         }
     })
 }
+
+export const useBlockOrUnblockUser = () => {
+    return useMutation<any, Error, { _id: string }>({
+        mutationKey: ["BLOCK_USER"],
+        mutationFn: async (userData) => await blockOrUnblockUser(userData),
+        onSuccess: () => {
+        toast.success("Action executed successfully.");
+    },
+        onError: (error) => {
+        toast.error(error.message);
+    },
+    });
+};
+
+export const useDeleteUser = () => {
+    return useMutation<any, Error, { _id: string }>({
+        mutationKey: ["DELETE_USER"],
+        mutationFn: async (userData) => await deleteUser(userData),
+        onSuccess: () => {
+        toast.success("User deleted successfully.");
+    },
+        onError: (error) => {
+        toast.error(error.message);
+    },
+    });
+};

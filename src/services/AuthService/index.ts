@@ -129,6 +129,8 @@ export const forgetPassword = async ( body:{email:string}) => {
     throw new Error("Failed to send email for reset password.")
   }
 }
+
+
 export const resetPassword = async ( body:{ _id: string, password: string }, token:string) => {
   try {
     const res = await fetch(`${envConfig.baseApi}/auth/reset-password`, {
@@ -161,3 +163,43 @@ export const getUserData = async (_id:string) => {
   const res = await fetch(`${envConfig.baseApi}/auth/${_id}`, fetchOptions)
   return res.json()
 }
+
+export const getAllUsers = async () => {
+  const fetchOptions = {
+      cache: "no-store",
+      next: {
+          tags: ["all-users"]
+      }
+  } as any
+
+  const res = await fetch(`${envConfig.baseApi}/auth/all-users`, fetchOptions)
+  return res.json()
+}
+
+export const blockOrUnblockUser = async (userData: { _id: string }) => {
+  console.log(userData);
+  try {
+    const { data } = await axiosInstance.put(`/auth/block-user`, userData, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    revalidateTag('all-users');
+    
+    return data;
+  } catch (error) {
+    throw new Error("Failed to block or unblock the user.");
+  }
+};
+
+export const deleteUser = async (userData:{_id:string}) => {
+  try {
+    const { data } = await axiosInstance.delete(`/auth/${userData?._id}` )
+    revalidateTag('all-users');
+    return data
+} catch (error) {
+    throw new Error("Failed to delete the user.")
+}
+}
+

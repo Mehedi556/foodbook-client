@@ -11,7 +11,7 @@ const page = async () => {
     console.log(data);
     
     return (
-        <div className="min-h-screen bg-gradient flex justify-center items-center">
+        <div className="min-h-screen bg-gradient flex justify-center ">
             <ProfileDetails userData={data} />
         </div>
     )

@@ -24,7 +24,7 @@ const toBase64 = (file: File): Promise<string> => {
 
 const image_hosting_api = `https://api.imgbb.com/1/upload`
 
-const ProfileDetails = ({userData}:{userData:IUser}) => {
+const ProfileDetails = ({ userData }: { userData: IUser }) => {
     const [profileImage, setProfileImage] = useState<string | undefined>(`${userData?.profilePicture}`);
 
     // console.log(profileImage);
@@ -54,15 +54,15 @@ const ProfileDetails = ({userData}:{userData:IUser}) => {
             // Create a preview URL for the selected image
             const imageUrl = URL.createObjectURL(file);
             setProfileImage(imageUrl); // Set the preview image URL
-            
+
         }
     };
-    
-      const onSubmit: SubmitHandler<IUserForUpdate> = async (data) => {
+
+    const onSubmit: SubmitHandler<IUserForUpdate> = async (data) => {
         console.log(data?.profilePicture?.length);
         console.log(data);
         try {
-            if (data?.profilePicture && data.profilePicture instanceof FileList ) {
+            if (data?.profilePicture && data.profilePicture instanceof FileList) {
                 const file = data.profilePicture[0]; // Get the first file
                 // const base64String = await toBase64(file); // Convert file to base64
 
@@ -86,105 +86,108 @@ const ProfileDetails = ({userData}:{userData:IUser}) => {
             }
 
             handleUpdateUser(data);
-            
+
         } catch (error) {
             throw new Error('Failed to update user: ' + (error as Error).message);
         }
     };
-  return (
-    <div className="w-full max-w-4xl mx-auto bg-gradientSecondary shadow-md rounded-lg p-6 space-y-8 ">
+    return (
+        <div className="w-full mx-auto bg-gradient shadow-md rounded-lg  px-20 pt-10">
 
-                {/* Profile Header */}
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-6 sm:gap-0">
-                    <div className="flex items-center space-x-6">
-                        {/* Profile Picture */}
-                        <div className="relative">
-                            <Image
-                                src={profileImage!}
-                                alt="Profile"
-                                className="rounded-full border-5 border-fuchsia-600 object-cover object-center"
-                                width={120}
-                                height={120}
-                            />
-                            {/* Change Profile Picture Button */}
-                            <label htmlFor="profilePicture" className="absolute -bottom-2 -right-2 bg-solid text-white px-3 py-3 rounded-full cursor-pointer">
+        <h1 className='font-bold text-2xl text-white text-left'>Profile details</h1>
+
+
+            {/* Profile Header */}
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-6 sm:gap-0 my-10">
+                <div className="flex items-center space-x-6">
+                    {/* Profile Picture */}
+                    <div className="relative">
+                        <Image
+                            src={profileImage!}
+                            alt="Profile"
+                            className="rounded-full border-5 border-fuchsia-600 object-cover object-center"
+                            width={120}
+                            height={120}
+                        />
+                        {/* Change Profile Picture Button */}
+                        <label htmlFor="profilePicture" className="absolute -bottom-2 -right-2 bg-solid text-white px-3 py-3 rounded-full cursor-pointer">
                             <Pencil />
-                                <input
-                                    id="profilePicture"
-                                    type="file"
-                                    accept="image/*"
-                                    className="hidden"
-                                    {...register("profilePicture")}
-                                />
-                            </label>
-                        </div>
-                        {/* Name and Email */}
-                        <div>
-                            <h2 className="text-2xl font-bold text-white">{userData?.name}</h2>
-                            <p className="text-sm text-white">{userData?.email}</p>
-                        </div>
+                            <input
+                                id="profilePicture"
+                                type="file"
+                                accept="image/*"
+                                className="hidden"
+                                {...register("profilePicture")}
+                            />
+                        </label>
                     </div>
-
-                    {/* Followers and Following Count */}
-                    <div className="flex space-x-8">
-                        <div className="text-center">
-                            <p className="text-lg font-bold text-white">{userData?.followers?.length}</p>
-                            <p className="text-sm text-white">Followers</p>
-                        </div>
-                        <div className="text-center">
-                            <p className="text-lg font-bold text-white">{userData?.following?.length}</p>
-                            <p className="text-sm text-white">Following</p>
-                        </div>
+                    {/* Name and Email */}
+                    <div>
+                        <h2 className="text-2xl font-bold text-white">{userData?.name}</h2>
+                        <p className="text-sm text-white">{userData?.email}</p>
                     </div>
                 </div>
 
-                {/* Profile Edit Form */}
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                    {/* Name Input */}
-                    <div>
-                        <label className="block text-white">Name</label>
-                        <input
-                            type="text"
-                            placeholder="Your Name"
-                            className="w-full px-4 py-2 rounded-lg focus:outline-none bg-solid"
-                            {...register('name', { required: true })}
-                        />
+                {/* Followers and Following Count */}
+                <div className="flex space-x-8">
+                    <div className="text-center">
+                        <p className="text-lg font-bold text-white">{userData?.followers?.length}</p>
+                        <p className="text-sm text-white">Followers</p>
                     </div>
-
-                    {/* Email Input */}
-                    <div>
-                        <label className="block text-white">Email</label>
-                        <input
-                            type="email"
-                            placeholder="Your Email"
-                            className="w-full px-4 py-2 rounded-lg focus:outline-none bg-solid"
-                            {...register('email', { required: true })}
-                        />
+                    <div className="text-center">
+                        <p className="text-lg font-bold text-white">{userData?.following?.length}</p>
+                        <p className="text-sm text-white">Following</p>
                     </div>
-
-                    {/* Bio Input */}
-                    <div>
-                        <label className="block text-white">Bio</label>
-                        <textarea
-                            rows={4}
-                            placeholder="Tell us a little about yourself..."
-                            className="w-full px-4 py-2 rounded-lg focus:outline-none bg-solid"
-                            {...register('bio')}
-                        />
-                    </div>
-
-                    
-                    <div>
-                        <button
-                            type="submit"
-                            className="w-full px-4 py-2 bg-solid text-white rounded-lg hover:bg-gradient transition-colors duration-300"
-                        >
-                            Update Profile
-                        </button>
-                    </div>
-                </form>
+                </div>
             </div>
-  )
+
+            {/* Profile Edit Form */}
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                {/* Name Input */}
+                <div>
+                    <label className="block text-white">Name</label>
+                    <input
+                        type="text"
+                        placeholder="Your Name"
+                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-solid"
+                        {...register('name', { required: true })}
+                    />
+                </div>
+
+                {/* Email Input */}
+                <div>
+                    <label className="block text-white">Email</label>
+                    <input
+                        type="email"
+                        placeholder="Your Email"
+                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-solid"
+                        {...register('email', { required: true })}
+                    />
+                </div>
+
+                {/* Bio Input */}
+                <div>
+                    <label className="block text-white">Bio</label>
+                    <textarea
+                        rows={4}
+                        placeholder="Tell us a little about yourself..."
+                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-solid"
+                        {...register('bio')}
+                    />
+                </div>
+
+
+                <div>
+                    <button
+                        type="submit"
+                        className="w-full px-4 py-2 bg-solid text-white rounded-lg hover:bg-gradient transition-colors duration-300"
+                    >
+                        Update Profile
+                    </button>
+                </div>
+            </form>
+        </div>
+    )
 }
 
 export default ProfileDetails
