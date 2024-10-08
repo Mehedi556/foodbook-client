@@ -3,8 +3,27 @@ import React from 'react'
 import RecipeCard from '../../components/RecipeCardWithComponents/RecipeCard'
 import { IRecipe } from '@/src/types/recipe.type'
 import { getRecipes } from '@/src/services/RecipeService'
+import { cookies } from 'next/headers'
+import { jwtDecode } from 'jwt-decode'
+
+interface DecodedUser {
+  _id: string;
+  name: string;
+  email: string;
+  role: string;
+  profilePicture: string;
+  memberStatus: string;
+  userStatus: string;
+  isDeleted: boolean;
+}
 
 const AdminLayoutPage = async () => {
+    const accessToken = cookies().get('accessToken')?.value;
+    let decodedUser: DecodedUser | null = null;
+
+  if (accessToken) {
+    decodedUser = await jwtDecode(accessToken);
+  }
 
 const { data } = await getRecipes()
 
@@ -44,7 +63,7 @@ const { data } = await getRecipes()
 
         <div>
           {
-            data?.result?.map((recipe:IRecipe) => <RecipeCard recipe={recipe}/>)
+            data?.result?.map((recipe:IRecipe) => <RecipeCard recipe={recipe} decodedUser={decodedUser}/>)
           }
         </div>
 

@@ -6,7 +6,6 @@ import { Button } from "@nextui-org/button"
 import { Image as NextUiImage } from "@nextui-org/image"
 import next from "next"
 import { ArrowBigDown, ArrowBigUp, MessageSquareText } from "lucide-react"
-import { Counter } from "@/src/components/counter"
 
 
 const page = () => {

@@ -10,7 +10,24 @@ export interface IUser {
   role: string;
   email: string;
   status?: string;
-  profilePicture?: string;
+  followers?: [];
+  following?: [];
+  bio?: string;
+  profilePicture?: any;
+  createdAt?: string;
+  updatedAt?: string;
+  __v?: number;
+}
+export interface IUserForUpdate {
+  _id: string;
+  name?: string;
+  role?: string;
+  email?: string;
+  bio?: string;
+  followers?: [];
+  following?: [];
+  status?: string;
+  profilePicture?: any;
   createdAt?: string;
   updatedAt?: string;
   __v?: number;

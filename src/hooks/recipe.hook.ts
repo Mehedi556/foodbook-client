@@ -1,5 +1,5 @@
-import { useMutation } from "@tanstack/react-query";
-import { addComment, deleteRecipe, updateVote } from "../services/RecipeService";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { addComment, deleteRecipe, getMyRecipes, updateVote } from "../services/RecipeService";
 import { toast } from "sonner";
 import { FieldValues } from "react-hook-form";
 
@@ -28,6 +28,18 @@ export const useAddComment = () => {
         }
     })
 }
+export const useGetMyRecipes = (_id: string) => {
+    return useQuery<any, Error>({
+        queryKey: ['UPDATE_VOTE'],
+        queryFn: async () => await getMyRecipes(_id), // Directly pass _id
+        // onSuccess: () => {
+        //     toast.success("Recipes fetched successfully");
+        // },
+        // onError: (error) => {
+        //     toast.error(error.message);
+        // }
+    });
+};
 
 export const useDeleteRecipe = () => {
     return useMutation<any, Error, { _id:string}>({

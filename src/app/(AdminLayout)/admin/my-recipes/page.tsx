@@ -1,24 +1,26 @@
 
-import { useUser } from '@/src/context/user.provider'
-import { getMyRecipes, getRecipes } from '@/src/services/RecipeService'
+import { getMyRecipes } from '@/src/services/RecipeService'
 import { IRecipe } from '@/src/types/recipe.type'
-import React from 'react'
-import { cookies } from 'next/headers'
-import { jwtDecode } from 'jwt-decode'
 import RecipeCard from '@/src/app/components/RecipeCardWithComponents/RecipeCard'
+import { useToken } from '@/src/utils/useToken'
+
+interface DecodedUser {
+    _id: string;
+    name: string;
+    email: string;
+    role: string;
+    profilePicture: string;
+    memberStatus: string;
+    userStatus: string;
+    isDeleted: boolean;
+  }
 
 const MyRecipes = async () => {
-    const accessToken = cookies().get('accessToken')?.value;
-    let decodedUser = null;
 
-    if (accessToken) {
-        decodedUser = await jwtDecode(accessToken);
-    }
+    const decodedUser = await useToken();
 
+    const data = await getMyRecipes(decodedUser?._id!)
 
-    const {data} = await getMyRecipes(decodedUser?._id!)
-
-    // console.log(data);
     
   return (
     <div className=''>
@@ -28,7 +30,7 @@ const MyRecipes = async () => {
 
         <div>
           {
-            data?.map((recipe:IRecipe) => <RecipeCard recipe={recipe}/>)
+            data?.data?.map((recipe:IRecipe) => <RecipeCard key={recipe?._id} recipe={recipe} decodedUser={decodedUser}/>)
           }
         </div>
 

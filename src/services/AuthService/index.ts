@@ -1,6 +1,7 @@
 "use server";
 import envConfig from "@/src/config/envConfig";
 import axiosInstance from "@/src/lib/AxiosInstance"
+import { IUserForUpdate } from "@/src/types";
 import { jwtDecode } from "jwt-decode";
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
@@ -94,6 +95,21 @@ export const addFollow = async (followerData: { _id:string}) => {
   }
 }
 
+export const updateUser = async (userData:IUserForUpdate) => {
+  console.log(userData);
+  try {
+      const { data } = await axiosInstance.patch(`/auth/${userData?._id}`, userData, {
+          headers: {
+              'Content-Type': 'application/json'
+          }
+      })
+      revalidateTag('my-profile');
+      return data
+  } catch (error) {
+      throw new Error("Failed to update the user.")
+  }
+}
+
 export const forgetPassword = async ( body:{email:string}) => {
   try {
     const res = await fetch(`${envConfig.baseApi}/auth/forget-password`, {
@@ -132,4 +148,16 @@ export const resetPassword = async ( body:{ _id: string, password: string }, tok
   } catch (error) {
     throw new Error("Failed to reset password.")
   }
+}
+
+export const getUserData = async (_id:string) => {
+  const fetchOptions = {
+      cache: "no-store",
+      next: {
+          tags: ["my-profile"]
+      }
+  } as any
+
+  const res = await fetch(`${envConfig.baseApi}/auth/${_id}`, fetchOptions)
+  return res.json()
 }

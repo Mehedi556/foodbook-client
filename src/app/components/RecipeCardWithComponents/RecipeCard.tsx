@@ -15,14 +15,8 @@ const timeAgo = (timestamp: string) => {
   return formatDistanceToNow(new Date(timestamp), { addSuffix: true });
 };
 
-const RecipeCard = async ({ recipe }: { recipe: IRecipe }) => {
-  const accessToken = cookies().get('accessToken')?.value;
-  let decodedUser = null;
+const RecipeCard = ({ recipe, decodedUser }: { recipe: IRecipe, decodedUser:any }) => {
 
-  if (accessToken) {
-    decodedUser = await jwtDecode(accessToken);
-  }
-  // console.log(recipe);
   return (
     <div className="w-full mx-auto my-10 rounded-lg bg-gradient-to-t from-[#A8BFFF] to-[#884D80]">
       <div className="flex justify-between items-center p-5 pb-0">
