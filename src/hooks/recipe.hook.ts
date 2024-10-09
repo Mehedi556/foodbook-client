@@ -1,7 +1,8 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { addComment, deleteRecipe, getMyRecipes, updateVote } from "../services/RecipeService";
+import { addComment, createPost, deleteRecipe, getMyRecipes, updatePost, updateVote } from "../services/RecipeService";
 import { toast } from "sonner";
 import { FieldValues } from "react-hook-form";
+import { IRecipe } from "../types/recipe.type";
 
 export const useUpdateVote = () => {
     return useMutation<any, Error, { recipeId:string, vote: string; voterId: string; }>({
@@ -18,7 +19,7 @@ export const useUpdateVote = () => {
 
 export const useAddComment = () => {
     return useMutation<any, Error, { author:string, content: string, postId: string }>({
-        mutationKey: ['UPDATE_VOTE'],
+        mutationKey: ['ADD_COMMENT'],
         mutationFn: async (commentData) => await addComment(commentData),
         onSuccess: () => {
             toast.success("Comment added successfully")
@@ -28,9 +29,34 @@ export const useAddComment = () => {
         }
     })
 }
+
+export const useCreatePost = () => {
+    return useMutation<any, Error, any>({
+        mutationKey: ['CREATE_POST'],
+        mutationFn: async (postData) => await createPost(postData),
+        onSuccess: () => {
+            toast.success("Post created successfully")
+        },
+        onError: (error) => {
+            toast.error(error.message);
+        }
+    })
+}
+export const useUpdatePost = () => {
+    return useMutation<any, Error, any>({
+        mutationKey: ['UPDATE_POST'],
+        mutationFn: async (postData) => await updatePost(postData),
+        onSuccess: () => {
+            toast.success("Post updated successfully")
+        },
+        onError: (error) => {
+            toast.error(error.message);
+        }
+    })
+}
 export const useGetMyRecipes = (_id: string) => {
     return useQuery<any, Error>({
-        queryKey: ['UPDATE_VOTE'],
+        queryKey: ['GET_MY_RECIPES'],
         queryFn: async () => await getMyRecipes(_id), // Directly pass _id
         // onSuccess: () => {
         //     toast.success("Recipes fetched successfully");

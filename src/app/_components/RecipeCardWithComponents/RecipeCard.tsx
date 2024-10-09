@@ -1,4 +1,3 @@
-import { Button } from '@nextui-org/button'
 import { Image } from '@nextui-org/image'
 import { Popover, PopoverTrigger, PopoverContent } from "@nextui-org/popover";
 import React from 'react'
@@ -6,10 +5,9 @@ import { IRecipe } from '@/src/types/recipe.type'
 import { formatDistanceToNow } from 'date-fns';
 import VoteAndCommentSection from './VoteAndCommentSection'
 import FollowButton from './FollowButton'
-import { Pencil, Settings, Trash2 } from 'lucide-react';
-import { cookies } from 'next/headers';
-import { jwtDecode } from 'jwt-decode';
+import { Settings } from 'lucide-react';
 import DeleteRecipeModal from './DeleteRecipeModal';
+import UpdateRecipeModal from '../feed/UpdateRecipeModal';
 
 const timeAgo = (timestamp: string) => {
   return formatDistanceToNow(new Date(timestamp), { addSuffix: true });
@@ -38,7 +36,7 @@ const RecipeCard = ({ recipe, decodedUser }: { recipe: IRecipe, decodedUser:any 
               }
 
               {
-                decodedUser?._id == recipe?.author?._id && <button className="text-white mr-2 flex gap-x-2 rounded-lg w-full items-center py-2 px-2 bg-solid"><Pencil /> Update</button>
+                decodedUser?._id == recipe?.author?._id && <UpdateRecipeModal data={recipe} />
               }
 
               {
@@ -52,7 +50,7 @@ const RecipeCard = ({ recipe, decodedUser }: { recipe: IRecipe, decodedUser:any 
       </div>
       <div className="p-5 ">
         <p className="text-base pb-3 text-slate-200">{recipe?.description}</p>
-        <div className="h-[670px] ">
+        <div className="h-[250px] sm:h-[300px] md:h-[370px] lg:h-[470px] xl:h-[570px] ">
           <img alt="post image" src={recipe?.image[0]} className="object-center object-cover h-full w-full rounded-lg" />
         </div>
 

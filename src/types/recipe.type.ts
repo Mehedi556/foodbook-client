@@ -18,14 +18,13 @@ export interface IRecipe {
     _id?: string;
     title: string;
     description: string;
-    ingredients: string[];
+    ingredients: any;
     instructions: string;
-    image: string[];
+    image: any[];
     tags?: string[];
-    cookingTime: number;
-    isPublished: boolean;
-    isDeleted: boolean;
     postStatus: "premium" | "non-premium";
+    isDeleted: boolean;
+    isPublished: boolean;
     author: TUser;
     rating: IRating;
     comments: IComment[];

@@ -7,8 +7,6 @@ const page = async () => {
     const decodedUser = await useToken()
 
     const { data } = await getUserData(decodedUser?._id!)
-
-    console.log(data);
     
     return (
         <div className="min-h-screen bg-gradient flex justify-center ">

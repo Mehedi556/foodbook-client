@@ -85,7 +85,7 @@ const CreateAdminModal = () => {
       <div className="flex items-center justify-center ">
 
         <div className="bg-white p-4 sm:p-8 m-3 sm:m-0 rounded-lg shadow-lg w-full ">
-          <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">Sign Up</h2>
+          <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">Create New Admin</h2>
 
           <form onSubmit={handleSubmit(onSubmit)} action="#" method="POST" className="space-y-3 sm:space-y-5">
             <div className="mb-2 space-y-1">

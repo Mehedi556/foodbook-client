@@ -1,6 +1,7 @@
 "use server"
 import envConfig from "@/src/config/envConfig"
 import axiosInstance from "@/src/lib/AxiosInstance"
+import { IRecipe } from "@/src/types/recipe.type"
 import { revalidateTag } from "next/cache"
 // import { cookies } from "next/headers"
 import { FieldValues } from "react-hook-form"
@@ -55,6 +56,34 @@ export const addComment = async (commentData: { author:string, content: string, 
         return data
     } catch (error) {
         throw new Error("Failed to add comment")
+    }
+}
+
+export const createPost = async (postData:IRecipe) => {
+    try {
+        const { data } = await axiosInstance.post('/recipes', postData, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        revalidateTag('recipes');
+        return data
+    } catch (error) {
+        throw new Error("Failed to create post")
+    }
+}
+
+export const updatePost = async (postData:IRecipe) => {
+    try {
+        const { data } = await axiosInstance.put('/recipes', postData, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        revalidateTag('recipes');
+        return data
+    } catch (error) {
+        throw new Error("Failed to update post")
     }
 }
 

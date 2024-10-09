@@ -92,7 +92,7 @@ const ProfileDetails = ({ userData }: { userData: IUser }) => {
         }
     };
     return (
-        <div className="w-full mx-auto bg-gradient shadow-md rounded-lg  px-20 pt-10">
+        <div className="w-full mx-auto bg-gradient shadow-md rounded-lg  px-5 lg:px-20 pt-10">
 
         <h1 className='font-bold text-2xl text-white text-left'>Profile details</h1>
 

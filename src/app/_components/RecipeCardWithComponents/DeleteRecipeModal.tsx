@@ -9,6 +9,7 @@ const DeleteRecipeModal = ({ _id }: { _id: string }) => {
     const { mutate: handleDeleteRecipe } = useDeleteRecipe()
   const handleDelete = (onClose: () => void) => {
     handleDeleteRecipe({_id: _id})
+    onClose()
   };
 
   return (
