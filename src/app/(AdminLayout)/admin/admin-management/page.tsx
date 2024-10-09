@@ -1,15 +1,25 @@
-import ManageUserButtons from '@/src/app/_components/manage-users/ManageUserButtons';
+import CreateAdminModal from '@/src/app/_components/admin-management/CreateAdminModal';
+import ManageAdminButtons from '@/src/app/_components/admin-management/ManageAdminButton';
 import { getAllUsers } from '@/src/services/AuthService';
 import { IUser } from '@/src/types';
 import React from 'react'
 
-const page = async () => {
-
+const AdminManagement = async () => {
     const {data} = await getAllUsers();
+
+    const admins = data?.filter((admin:IUser) => admin.role == 'admin')
+
 
   return (
     <div className="container mx-auto p-8">
-    <h1 className="text-3xl font-semibold mb-6 text-center">Manage All Users</h1>
+      <div className='flex justify-between items-center'>
+        <h1 className="text-3xl font-semibold mb-6">Manage All Admins</h1>
+        <div>
+          <CreateAdminModal />
+        </div>
+        
+      </div>
+    
 
     <div className="overflow-x-auto rounded-lg">
       <table className="min-w-full table-auto bg-solid rounded-lg shadow-lg">
@@ -22,7 +32,7 @@ const page = async () => {
           </tr>
         </thead>
         <tbody className='bg-gradient'>
-          {data?.map((user:IUser) => (
+          {admins?.map((user:IUser) => (
             <tr key={user._id} className={`bg-transparent`}>
               <td className="px-6 py-4">
                 <img
@@ -34,7 +44,7 @@ const page = async () => {
               <td className="px-6 py-4 text-sm font-medium text-white">{user.name}</td>
               <td className="px-6 py-4 text-sm text-white">{user.email}</td>
               <td className="px-6 py-4 flex justify-center space-x-4">
-                <ManageUserButtons user={user} />
+                <ManageAdminButtons user={user} />
               </td>
             </tr>
           ))}
@@ -45,4 +55,4 @@ const page = async () => {
   )
 }
 
-export default page
+export default AdminManagement

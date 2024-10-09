@@ -97,7 +97,7 @@ const ProfileDetails = ({ userData }: { userData: IUser }) => {
         <h1 className='font-bold text-2xl text-white text-left'>Profile details</h1>
 
 
-            {/* Profile Header */}
+
             <div className="flex flex-col sm:flex-row justify-between items-center gap-6 sm:gap-0 my-10">
                 <div className="flex items-center space-x-6">
                     {/* Profile Picture */}
@@ -141,7 +141,7 @@ const ProfileDetails = ({ userData }: { userData: IUser }) => {
                 </div>
             </div>
 
-            {/* Profile Edit Form */}
+
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 {/* Name Input */}
                 <div>

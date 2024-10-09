@@ -1,6 +1,5 @@
 "use client"
 import React from 'react';
-// import ReusableModal from './ReusableModal';
 import { Button } from '@nextui-org/button';
 import ReusableSecondModal from './ReusableSecondModal';
 import { Trash2 } from 'lucide-react';
@@ -9,9 +8,7 @@ import { useDeleteRecipe } from '@/src/hooks/recipe.hook';
 const DeleteRecipeModal = ({ _id }: { _id: string }) => {
     const { mutate: handleDeleteRecipe } = useDeleteRecipe()
   const handleDelete = (onClose: () => void) => {
-    // Perform delete logic here
     handleDeleteRecipe({_id: _id})
-    onClose(); // Close the modal after deletion
   };
 
   return (

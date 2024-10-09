@@ -1,7 +1,7 @@
 
 import { getMyRecipes } from '@/src/services/RecipeService'
 import { IRecipe } from '@/src/types/recipe.type'
-import RecipeCard from '@/src/app/components/RecipeCardWithComponents/RecipeCard'
+import RecipeCard from '@/src/app/_components/RecipeCardWithComponents/RecipeCard'
 import { useToken } from '@/src/utils/useToken'
 
 interface DecodedUser {

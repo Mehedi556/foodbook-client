@@ -11,7 +11,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import Loading from '@/src/components/Loading'
 import { useEffect } from 'react'
 import { useUser } from '@/src/context/user.provider'
-import ForgotPasswordModal from '../components/login/ForgotPasswordModal'
+import ForgotPasswordModal from '../_components/login/ForgotPasswordModal'
 
 type Inputs = {
   email: string;
@@ -44,10 +44,6 @@ const LoginPage = () => {
     handleLogin(data);
     userLoading(true)
   }
-
-
-
-
 
 
   return (

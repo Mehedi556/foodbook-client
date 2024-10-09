@@ -1,4 +1,4 @@
-import ProfileDetails from '@/src/app/components/my-profile/ProfileDetails'
+import ProfileDetails from '@/src/app/_components/my-profile/ProfileDetails'
 import { getUserData } from '@/src/services/AuthService'
 import { useToken } from '@/src/utils/useToken'
 

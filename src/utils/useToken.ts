@@ -13,12 +13,12 @@ interface DecodedUser {
     isDeleted: boolean;
   }
 
-export const useToken = async () => {
+export const useToken = () => {
     const accessToken = cookies().get('accessToken')?.value;
     let decodedUser: DecodedUser | null = null;
 
     if (accessToken) {
-        decodedUser = await jwtDecode(accessToken);
+        decodedUser = jwtDecode(accessToken);
     }
 
     return decodedUser

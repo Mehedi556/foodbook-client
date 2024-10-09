@@ -1,6 +1,6 @@
 import React from 'react'
-import LeftSidebar from '../components/LeftSidebar'
-import RightSidebar from '../components/RightSidebar'
+import LeftSidebar from '../_components/LeftSidebar'
+import RightSidebar from '../_components/RightSidebar'
 
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   return (

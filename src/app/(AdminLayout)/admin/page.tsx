@@ -1,6 +1,6 @@
 import {  Image as ImageHolder, SmilePlus, Video } from 'lucide-react'
 import React from 'react'
-import RecipeCard from '../../components/RecipeCardWithComponents/RecipeCard'
+import RecipeCard from '../../_components/RecipeCardWithComponents/RecipeCard'
 import { IRecipe } from '@/src/types/recipe.type'
 import { getRecipes } from '@/src/services/RecipeService'
 import { cookies } from 'next/headers'

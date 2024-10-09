@@ -1,5 +1,5 @@
 import Image from "next/image"
-import HeroSection from "./components/hero"
+import HeroSection from "./_components/hero"
 import userIcon from '@/src/assets/user.png'
 import postImage from '@/src/assets/banner.jpg'
 import { Button } from "@nextui-org/button"
