@@ -1,6 +1,16 @@
+import PaymentButton from '@/src/app/_components/subscription/PaymentButton'
+import { DecodedUser } from '@/src/types/decodedUser.type';
+import { jwtDecode } from 'jwt-decode';
+import { cookies } from 'next/headers';
 import React from 'react'
 
-const SubscriptionPage = () => {
+const page = async () => {
+    const accessToken = cookies().get('accessToken')?.value;
+    let decodedUser: DecodedUser | null = null;
+
+    if (accessToken) {
+        decodedUser = await jwtDecode(accessToken);
+    }
   return (
     <div className="min-h-screen bg-gradient flex flex-col justify-center items-center p-5">
       {/* Page Header */}
@@ -26,9 +36,7 @@ const SubscriptionPage = () => {
         </div>
 
         <div className="text-center">
-          <button className="w-full py-4 text-xl font-semibold text-white bg-gradient-to-r from-indigo-500 to-purple-700 rounded-full hover:shadow-lg hover:bg-purple-600 focus:outline-none transition duration-200">
-            Pay $100 for Subscription
-          </button>
+          <PaymentButton user={decodedUser!}/>
         </div>
       </div>
 
@@ -40,4 +48,4 @@ const SubscriptionPage = () => {
   )
 }
 
-export default SubscriptionPage
+export default page
