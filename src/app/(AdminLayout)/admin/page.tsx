@@ -6,17 +6,9 @@ import { getRecipes } from '@/src/services/RecipeService'
 import { cookies } from 'next/headers'
 import { jwtDecode } from 'jwt-decode'
 import CreateRecipeModal from '../../_components/feed/CreateRecipeModal'
+import { DecodedUser } from '@/src/types/decodedUser.type'
 
-interface DecodedUser {
-  _id: string;
-  name: string;
-  email: string;
-  role: string;
-  profilePicture: string;
-  memberStatus: string;
-  userStatus: string;
-  isDeleted: boolean;
-}
+
 
 const AdminLayoutPage = async () => {
   const accessToken = cookies().get('accessToken')?.value;
@@ -42,8 +34,6 @@ const AdminLayoutPage = async () => {
               </svg>
             </div>
             <div>
-              {/* <input type="search" id="search" className="cursor-pointer block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500" placeholder="Write a post..." />
-              <button className="text-white absolute end-2.5 bottom-2.5 bg-solid  focus:outline-none font-medium rounded-lg text-sm px-4 py-2 cursor-pointer" disabled>Create</button> */}
               <CreateRecipeModal />
             </div>
 

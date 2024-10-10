@@ -17,12 +17,12 @@ const HeroSection = () => {
             <p className="text-sm sm:text-lg md:text-xl text-gray-100 mb-8 w-11/12 mx-auto">Join a community of cooking enthusiasts, explore a world of delicious recipes, and share your culinary creations. Whether you're a seasoned chef or just getting started, find inspiration, rate recipes, and connect with fellow food lovers. Start cooking, rating, and sharing today!</p>
 
 
-            <div className="pt-20 w-3/5 flex-1 mx-auto">
+            <div className="pt-5 md:pt-12 lg:pt-20 w-5/5 md:w-4/5 lg:w-3/5 flex-1 mx-auto">
               <form 
               // onSubmit={handleSubmit(onSubmit)} 
               className="flex-1">
                 <Input
-                className='w-full border rounded-xl text-white'
+                className='w-full border border-fuchsia-600 rounded-xl text-white'
                   // {...register('search')}
                   aria-label="Search"
                   classNames={{
@@ -63,14 +63,6 @@ const HeroSection = () => {
                         </div>
                       </Link>
                     ))}
-                  </div>
-                  <div className="mt-3 flex justify-center border-t-1 border-default-50 pt-3">
-                    <button
-                      className="flex items-center justify-center gap-1"
-                      onClick={() => handleSeeAll(searchTerm)}
-                    >
-                      <span>See All</span>
-                    </button>
                   </div>
                 </div>
               )} */}
