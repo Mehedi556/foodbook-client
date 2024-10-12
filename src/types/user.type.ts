@@ -7,7 +7,7 @@ export type TUser = {
     bio?: string;
     memberStatus?: {
         status?: 'premium' | 'non-premium';
-        expiresIn?: Date;
+        expiresIn?: string;
     };
     followers?: string[];
     following?: string[];

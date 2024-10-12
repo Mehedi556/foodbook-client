@@ -15,7 +15,7 @@ import envConfig from '@/src/config/envConfig';
 const image_hosting_api = `https://api.imgbb.com/1/upload`
 
 const CreateAdminModal = () => {
-    const { mutate: handleUserRegistration, data:  isPending } = useUserRegistration();
+    const { mutate: handleUserRegistration, data, isPending } = useUserRegistration();
   
     const {
       register,
@@ -39,7 +39,7 @@ const CreateAdminModal = () => {
     
           const imageHost = await imageHostResponse.json();
     
-          const payload = {
+          const payload:TUser = {
             ...data,
             role: 'admin',
             profilePicture: imageHost?.data?.display_url,

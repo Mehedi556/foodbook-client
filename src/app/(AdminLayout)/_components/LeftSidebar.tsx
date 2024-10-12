@@ -13,15 +13,15 @@ const LeftSidebar = async () => {
     <div className='w-full'>
       <LeftProfileSection />
       <div className='mt-10 px-5 flex flex-col gap-y-3'>
-        <Link href='/user' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
+        <Link href={`/${decodedUser?.role}`} className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
           <House className='ml-4 xl:ml-20' />
           <p>Feed</p>
         </Link>
-        <Link href='/user/my-recipes' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
+        <Link href={`/${decodedUser?.role}/my-recipes`} className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
           <ChefHat className='ml-4 xl:ml-20' />
           <p>My recipes</p>
         </Link>
-        <Link href='/user/my-profile' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
+        <Link href={`/${decodedUser?.role}/my-profile`} className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
           <UserRoundPen className='ml-4 xl:ml-20' />
           <p>My profile</p>
         </Link>

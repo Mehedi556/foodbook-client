@@ -41,7 +41,6 @@ const RecipeCard = ({ recipe, decodedUser }: { recipe: IRecipe, decodedUser:any 
 
               {
                 (decodedUser?._id === recipe?.author?._id || decodedUser?.role === 'admin') && <DeleteRecipeModal _id={recipe?._id!} />
-                
               }
 
             </div>
@@ -50,8 +49,11 @@ const RecipeCard = ({ recipe, decodedUser }: { recipe: IRecipe, decodedUser:any 
       </div>
       <div className="p-5 ">
         <p className="text-base pb-3 text-slate-200">{recipe?.description}</p>
-        <div className="h-[250px] sm:h-[300px] md:h-[370px] lg:h-[470px] xl:h-[570px] ">
+        <div className="h-[250px] sm:h-[300px] md:h-[370px] lg:h-[470px] xl:h-[570px] relative">
           <img alt="post image" src={recipe?.image[0]} className="object-center object-cover h-full w-full rounded-lg" />
+          {
+            recipe?.postStatus == 'premium' && <p className='absolute right-5 top-5 py-1 px-3 rounded-lg bg-yellow-600 text-white text-sm'>Premium</p>
+          }
         </div>
 
       </div>

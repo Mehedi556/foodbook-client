@@ -9,7 +9,6 @@ import CreateRecipeModal from '../../_components/feed/CreateRecipeModal'
 import { DecodedUser } from '@/src/types/decodedUser.type'
 
 
-
 const AdminLayoutPage = async () => {
   const accessToken = cookies().get('accessToken')?.value;
   let decodedUser: DecodedUser | null = null;

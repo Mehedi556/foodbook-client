@@ -40,7 +40,7 @@ const SignupPage = () => {
 
       const imageHost = await imageHostResponse.json();
 
-      const payload = {
+      const payload:TUser = {
         ...data,
         role: 'user',
         profilePicture: imageHost?.data?.display_url,

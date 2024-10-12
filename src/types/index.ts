@@ -9,7 +9,11 @@ export interface IUser {
   name?: string;
   role: string;
   email: string;
-  status?: string;
+  userStatus?: string;
+  memberStatus?: {
+    status: 'premium' | 'non-premium',
+    expiresIn: Date
+  };
   followers?: [];
   following?: [];
   bio?: string;
@@ -26,7 +30,11 @@ export interface IUserForUpdate {
   bio?: string;
   followers?: [];
   following?: [];
-  status?: string;
+  userStatus?: string;
+  memberStatus?: {
+    status: 'premium' | 'non-premium',
+    expiresIn: Date
+  };
   profilePicture?: any;
   createdAt?: string;
   updatedAt?: string;

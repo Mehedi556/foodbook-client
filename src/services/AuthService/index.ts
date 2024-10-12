@@ -2,18 +2,20 @@
 import envConfig from "@/src/config/envConfig";
 import axiosInstance from "@/src/lib/AxiosInstance"
 import { IUserForUpdate } from "@/src/types";
+import { TUser } from "@/src/types/user.type";
 import { jwtDecode } from "jwt-decode";
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 import { FieldValues } from "react-hook-form"
 
-export const registerUser = async (userData: FieldValues) => {
+export const registerUser = async (userData: TUser) => {
     try {
-      const { data } = await axiosInstance.post("/auth/signup", userData);
-      // if (data?.success) {
-      //   cookies().set("accessToken", data?.data?.accessToken);
-      //   cookies().set("refreshToken", data?.data?.refreshToken);
-      // }
+      const { data } = await axiosInstance.post("/auth/signup", userData, {
+        headers: {
+          'Content-Type': 'application/json'
+      }
+      })
+      revalidateTag('all-users');
       return data;
     } catch (error: any) {
       throw new Error(error);
@@ -129,7 +131,6 @@ export const forgetPassword = async ( body:{email:string}) => {
     throw new Error("Failed to send email for reset password.")
   }
 }
-
 
 export const resetPassword = async ( body:{ _id: string, password: string }, token:string) => {
   try {

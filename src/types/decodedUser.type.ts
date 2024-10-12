@@ -4,7 +4,10 @@ export interface DecodedUser {
     email: string;
     role: string;
     profilePicture: string;
-    memberStatus: string;
+    memberStatus: {
+      status: 'premium' | 'non-premium',
+      expiresIn: Date
+    };
     userStatus: string;
     isDeleted: boolean;
   }

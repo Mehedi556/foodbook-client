@@ -3,10 +3,11 @@ import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 import { addFollow, blockOrUnblockUser, deleteUser, loginUser, registerUser, resetPassword, updateUser } from "../services/AuthService";
 import { IUserForUpdate } from "../types";
+import { TUser } from "../types/user.type";
 
 
 export const useUserRegistration = () => {
-    return useMutation<any, Error, FieldValues>({
+    return useMutation<any, Error, TUser>({
         mutationKey: ["USER_REGISTRATION"],
         mutationFn: async (userData) => await registerUser(userData),
         onSuccess: () => {

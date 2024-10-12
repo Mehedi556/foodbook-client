@@ -31,6 +31,18 @@ export const getMyRecipes = async (_id:string) => {
     return res.json()
 }
 
+export const getRecipeDetails = async (_id:string) => {
+    const fetchOptions = {
+        cache: "no-store",
+        next: {
+            tags: ["recipe-details"]
+        }
+    } as any
+
+    const res = await fetch(`${envConfig.baseApi}/recipes/${_id}`, fetchOptions)
+    return res.json()
+}
+
 export const updateVote = async (voteData: { recipeId:string, vote: string, voterId: string }) => {
     try {
         const { data } = await axiosInstance.patch('recipes/update-vote', voteData, {
