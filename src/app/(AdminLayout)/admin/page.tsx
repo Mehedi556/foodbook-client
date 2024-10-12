@@ -17,7 +17,13 @@ const AdminLayoutPage = async () => {
     decodedUser = await jwtDecode(accessToken);
   }
 
-  const { data } = await getRecipes()
+  // const queryData = {
+  //   searchTerm: '',
+  //   filter: { filterProperty: '', filterValue: '' },
+  //   sortData: ''
+  // }
+
+  const { data } = await getRecipes('')
 
   return (
     <div className=''>

@@ -9,25 +9,25 @@ import CommentModal from './CommentModal'
 import { IComment } from '@/src/types/recipe.type'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 
 const isSubscriptionValid = (expiresIn:any) => {
   const currentDate = new Date();
   const expirationDate = new Date(expiresIn);
-  return currentDate <= expirationDate; // Check if current date is before or equal to expiration date
+  return currentDate <= expirationDate;
 };
 
-const VoteAndCommentSection = ({ comments, recipeId, upvotes, downvotes }: { comments: IComment[], recipeId: string, upvotes: any, downvotes: any }) => {
+const VoteAndCommentSection = ({ comments, recipeId, upvotes, downvotes, postStatus }: { comments: IComment[], recipeId: string, upvotes: any, downvotes: any, postStatus: string }) => {
   const {
     mutate: handleUpdateVote
   } = useUpdateVote();
 
+  const { user } = useUser();
   const pathname = usePathname();
   const router = useRouter()
-  const shouldRenderLink = !pathname.includes('/admin/recipe-details/')
-  console.log(pathname);
+  const shouldRenderLink = !pathname.includes(`/${user?.role}/recipe-details/`)
 
-  const { user } = useUser();
-  console.log(user);
+  
 
   const isIdExistsInUpvote = upvotes?.find((id: string) => id == user?._id)
   const isIdExistsInDownvote = downvotes?.find((id: string) => id == user?._id)
@@ -45,10 +45,16 @@ const VoteAndCommentSection = ({ comments, recipeId, upvotes, downvotes }: { com
     if(user?.role == 'admin'){
       router.push(`/${user?.role}/recipe-details/${recipeId}`)
     } else if(user?.role == 'user'){
-      if(user?.memberStatus?.status == 'premium' && isSubscriptionValid(user?.memberStatus?.expiresIn)){
-        router.push(`/${user?.role}/recipe-details/${recipeId}`)
+
+      if(postStatus == 'premium'){
+        if(user?.memberStatus?.status == 'premium' && isSubscriptionValid(user?.memberStatus?.expiresIn)){
+          router.push(`/${user?.role}/recipe-details/${recipeId}`)
+        } else {
+          router.push('/user/subscription')
+          user?.memberStatus?.status == 'non-premium' ? toast.error('Please buy a subscription for access premium content') : toast.error('Your subscription has expired, Please renew your subscription..')
+        }
       } else {
-        router.push('/subscription')
+        router.push(`/${user?.role}/recipe-details/${recipeId}`)
       }
     }
   }

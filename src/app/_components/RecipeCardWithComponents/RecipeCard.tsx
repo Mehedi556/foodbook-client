@@ -61,7 +61,7 @@ const RecipeCard = ({ recipe, decodedUser }: { recipe: IRecipe, decodedUser:any 
         <p>{recipe?.upvotes.length} peoples like this post.</p>
         <p>{recipe?.comments.length} comments</p>
       </div>
-      <VoteAndCommentSection comments={recipe?.comments} recipeId={recipe?._id as string} upvotes={recipe?.upvotes} downvotes={recipe?.downvotes} />
+      <VoteAndCommentSection comments={recipe?.comments} recipeId={recipe?._id as string} upvotes={recipe?.upvotes} downvotes={recipe?.downvotes} postStatus={recipe?.postStatus} />
     </div>
   )
 }

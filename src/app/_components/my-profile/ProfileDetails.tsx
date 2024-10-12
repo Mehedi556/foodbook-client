@@ -4,10 +4,9 @@ import { IUser, IUserForUpdate } from "@/src/types";
 import { Pencil } from "lucide-react";
 import Image from "next/image";
 import { SubmitHandler, useForm } from "react-hook-form";
-// import profileImage from '@/src/assets/user.png'
 import { useEffect, useState } from "react";
 import envConfig from "@/src/config/envConfig";
-import { useUpdateUser } from "@/src/hooks/auth.hook";
+import { useUpdateUser, useUserChangePassword } from "@/src/hooks/auth.hook";
 
 const toBase64 = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -25,9 +24,22 @@ const toBase64 = (file: File): Promise<string> => {
 const image_hosting_api = `https://api.imgbb.com/1/upload`
 
 const ProfileDetails = ({ userData }: { userData: IUser }) => {
+    const [formData, setFormData] = useState({
+        oldPassword: '',
+        newPassword: '',
+    });
+
+    const { mutate: handleChangePassword } = useUserChangePassword();
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
     const [profileImage, setProfileImage] = useState<string | undefined>(`${userData?.profilePicture}`);
 
-    // console.log(profileImage);
 
     const { mutate: handleUpdateUser } = useUpdateUser()
 
@@ -47,13 +59,10 @@ const ProfileDetails = ({ userData }: { userData: IUser }) => {
     const handleProfilePictureChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
             const file = e.target.files[0];
-
             // Use setValue to update React Hook Form state
-            // setValue('profilePicture', e.target.files); // Update the form state with the selected file
-
-            // Create a preview URL for the selected image
+            // setValue('profilePicture', e.target.files);
             const imageUrl = URL.createObjectURL(file);
-            setProfileImage(imageUrl); // Set the preview image URL
+            setProfileImage(imageUrl);
 
         }
     };
@@ -91,13 +100,14 @@ const ProfileDetails = ({ userData }: { userData: IUser }) => {
             throw new Error('Failed to update user: ' + (error as Error).message);
         }
     };
+
+    const handleSubmitPassword = (e: any) => {
+        e.preventDefault();
+        handleChangePassword(formData);
+    }
     return (
         <div className="w-full mx-auto bg-gradient shadow-md rounded-lg  px-5 lg:px-20 pt-10">
-
-        <h1 className='font-bold text-2xl text-white text-left'>Profile details</h1>
-
-
-
+            <h1 className='font-bold text-2xl text-white text-left'>Profile details</h1>
             <div className="flex flex-col sm:flex-row justify-between items-center gap-6 sm:gap-0 my-10">
                 <div className="flex items-center space-x-6">
                     {/* Profile Picture */}
@@ -185,6 +195,42 @@ const ProfileDetails = ({ userData }: { userData: IUser }) => {
                         Update Profile
                     </button>
                 </div>
+            </form>
+
+            <h1 className='font-bold text-2xl text-white text-left mt-10'>Change password</h1>
+
+            <form onSubmit={handleSubmitPassword} action="" className="my-5 flex flex-col gap-y-3">
+                <div>
+                    <label className="block text-white">Old Password</label>
+                    <input
+                        type="password"
+                        name="oldPassword"
+                        placeholder="Type your old password"
+                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-solid"
+                        value={formData.oldPassword}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label className="block text-white">New Password</label>
+                    <input
+                        type="password"
+                        name="newPassword"
+                        placeholder="Type new password"
+                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-solid"
+                        value={formData.newPassword}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
+
+                <button
+                    type="submit"
+                    className="w-full px-4 py-2 bg-solid text-white rounded-lg hover:bg-gradient transition-colors duration-300"
+                >
+                    Change password
+                </button>
             </form>
         </div>
     )

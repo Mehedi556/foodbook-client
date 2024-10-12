@@ -1,7 +1,7 @@
 import React from 'react'
-import LeftSidebar from '../../(AdminLayout)/_components/LeftSidebar'
-import DashboardNavbar from '../../(AdminLayout)/_components/DashboardNavbar'
-import RightSidebar from '../../(AdminLayout)/_components/RightSidebar'
+import LeftSidebar from '../../_components/LeftSidebar'
+import RightSidebar from '../../_components/RightSidebar'
+import DashboardNavbar from '../../_components/DashboardNavbar'
 
 const UserLayout = ({children}: {children: React.ReactNode}) => {
   return (

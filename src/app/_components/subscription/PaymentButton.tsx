@@ -1,8 +1,8 @@
 "use client"
 
 import { useInitiatePayment } from "@/src/hooks/payment.hook"
+import { logout } from "@/src/services/AuthService";
 import { DecodedUser } from "@/src/types/decodedUser.type";
-import { useEffect } from "react";
 
 const generateTransactionId = (): string => {
     const timestamp = Date.now(); // Current timestamp in milliseconds
@@ -15,7 +15,8 @@ const PaymentButton = ({user}:{user:DecodedUser}) => {
     const { mutate:handleCreatePayment, data, isSuccess, isPending } = useInitiatePayment();
 
     if(isSuccess && !isPending){
-        window.location.href = data?.data?.payment_url
+        window.location.href = data?.data?.payment_url;
+        logout();
     }
 
     const createPayment = () => {
@@ -27,7 +28,8 @@ const PaymentButton = ({user}:{user:DecodedUser}) => {
             address: 'N/A',
             phone: '88019856987445'
         }
-        handleCreatePayment(payload)
+        handleCreatePayment(payload);
+        
     }
     return (
         <button onClick={createPayment} className="w-full py-4 text-xl font-semibold text-white bg-gradient-to-r from-indigo-500 to-purple-700 rounded-full hover:shadow-lg hover:bg-purple-600 focus:outline-none transition duration-200">

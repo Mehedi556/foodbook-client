@@ -7,7 +7,7 @@ import { useUser } from '@/src/context/user.provider';
 import Link from 'next/link';
 import { logout } from '@/src/services/AuthService';
 import { ChartNoAxesCombined, Headset, House, LogIn, LogOut, UserCheck } from 'lucide-react';
-import LeftProfileSection from '../../(AdminLayout)/_components/LeftProfileSection';
+import LeftProfileSection from '../../_components/LeftProfileSection';
 
 const NavbarComponent = () => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);

@@ -1,4 +1,4 @@
-import { SmilePlus,Image as ImageHolder, Video } from 'lucide-react'
+import { SmilePlus, Image as ImageHolder, Video } from 'lucide-react'
 import React from 'react'
 import CreateRecipeModal from '../../_components/feed/CreateRecipeModal'
 import { IRecipe } from '@/src/types/recipe.type'
@@ -7,6 +7,7 @@ import { getRecipes } from '@/src/services/RecipeService'
 import { cookies } from 'next/headers'
 import { DecodedUser } from '@/src/types/decodedUser.type'
 import { jwtDecode } from 'jwt-decode'
+import SearchBar from '../../_components/feed/SearchBar'
 
 const UserLayoutPage = async () => {
   const accessToken = cookies().get('accessToken')?.value;
@@ -15,13 +16,17 @@ const UserLayoutPage = async () => {
   if (accessToken) {
     decodedUser = await jwtDecode(accessToken);
   }
-  const { data } = await getRecipes()
+
+  const { data } = await getRecipes('')
+
+  const sortedRecipes = data?.result?.sort((a: any, b: any) => b.upvotes.length - a.upvotes.length);
   return (
     <div className=''>
       <div className='mt-10  px-5 lg:px-20'>
-        <h1 className='font-bold text-2xl text-white text-left'>Feeds</h1>
-
-        <form className='border p-4 md:p-10 py-5 rounded-xl mt-5'>
+        <div className='z-50'>
+          <SearchBar />
+        </div>
+        <form className='border border-gray-500 shadow-xl p-4 md:p-10 py-5 rounded-xl mt-5'>
           <p className='text-white font-semibold text-base md:text-xl pb-3'>Share your recipe</p>
           <div className="relative cursor-pointer">
             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -52,11 +57,11 @@ const UserLayoutPage = async () => {
             </div>
           </div>
         </form>
-        
+
 
         <div>
           {
-            data?.result?.map((recipe: IRecipe) => <RecipeCard recipe={recipe} decodedUser={decodedUser} />)
+            sortedRecipes.map((recipe: IRecipe) => <RecipeCard recipe={recipe} decodedUser={decodedUser} />)
           }
         </div>
 

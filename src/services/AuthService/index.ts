@@ -22,6 +22,8 @@ export const registerUser = async (userData: TUser) => {
     }
   };
 
+
+
 export const loginUser = async (userData:FieldValues) => {
     try {
         const {data} = await axiosInstance.post('/auth/login', userData)
@@ -35,6 +37,19 @@ export const loginUser = async (userData:FieldValues) => {
         throw new Error(error);
     }
 }
+
+export const changePassword = async (passwordData: { oldPassword: string, newPassword: string }) => {
+  try {
+    await axiosInstance.post("/auth/change-password", passwordData, {
+      headers: {
+        'Content-Type': 'application/json'
+    }
+    })
+    return null;
+  } catch (error: any) {
+    throw new Error(error?.response?.data?.message);
+  }
+};
 
 export const logout = () => {
     cookies().delete('accessToken'),

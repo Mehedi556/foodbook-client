@@ -3,17 +3,23 @@ import envConfig from "@/src/config/envConfig"
 import axiosInstance from "@/src/lib/AxiosInstance"
 import { IRecipe } from "@/src/types/recipe.type"
 import { revalidateTag } from "next/cache"
-// import { cookies } from "next/headers"
-import { FieldValues } from "react-hook-form"
 
-export const getRecipes = async () => {
+export const getRecipes = async (searchTerm:string) => {
+    console.log(searchTerm);
+    
+    const queryString = new URLSearchParams({ 
+        isDeleted: 'false',
+        ...(searchTerm ? { searchTerm: searchTerm } : {}),
+    }).toString();
+
     const fetchOptions = {
         cache: "no-store",
         next: {
             tags: ["recipes"]
         }
-    } as any
-    const queryString = new URLSearchParams({ isDeleted: 'false' }).toString();
+    } as any;
+
+    console.log(queryString);
 
     const res = await fetch(`${envConfig.baseApi}/recipes?${queryString}`, fetchOptions)
     return res.json()

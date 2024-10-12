@@ -122,7 +122,7 @@ const CreateRecipeModal = () => {
             trigger={(onOpen) => (
                 <Button onPress={onOpen} size='lg' className='w-full bg-solid px-0'>
                     <input type="search" id="search" className="cursor-pointer block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500" placeholder="Write a post..." />
-                    <span className="text-white absolute end-7 bottom-1.5 bg-solid  focus:outline-none font-medium rounded-lg text-sm px-4 py-2 cursor-pointer">Create</span>
+                    <span className="text-white absolute end-2 bottom-1.5 bg-solid  focus:outline-none font-medium rounded-lg text-sm px-4 py-2 cursor-pointer">Create</span>
                 </Button>
             )}
         >

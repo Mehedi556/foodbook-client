@@ -14,7 +14,13 @@ import RecipeCardForCommonLayout from "../_components/RecipeCardWithComponents/R
 
 
 const page = async () => {
-  const { data } = await getRecipes()
+  const queryData = {
+    searchTerm: '',
+    filter: { filterProperty: '', filterValue: '' },
+    sortData: ''
+  }
+  const { data } = await getRecipes(queryData);
+  const sortedRecipes = data?.result?.sort((a:any, b:any) => b.upvotes.length - a.upvotes.length);
   const decodedUser = await useToken()
   // console.log(decodedUser);
   return (
@@ -25,7 +31,7 @@ const page = async () => {
         decodedUser?._id ? (
           <div className="mx-auto p-2 w-12/12 md:w-10/12 lg:w-8/12 xl:w-6/12">
             {
-              data?.result?.map((recipe: IRecipe) => <RecipeCard key={recipe?._id} recipe={recipe} decodedUser={decodedUser} />)
+              sortedRecipes?.map((recipe: IRecipe) => <RecipeCard key={recipe?._id} recipe={recipe} decodedUser={decodedUser} />)
             }
           </div>
         )
@@ -33,7 +39,7 @@ const page = async () => {
           (
             <div className="mx-auto p-2 w-12/12 md:w-10/12 lg:w-8/12 xl:w-6/12">
               {
-                data?.result?.map((recipe: IRecipe) => <RecipeCardForCommonLayout key={recipe?._id} recipe={recipe} />)
+                sortedRecipes?.map((recipe: IRecipe) => <RecipeCardForCommonLayout key={recipe?._id} recipe={recipe} />)
               }
             </div>
           )
