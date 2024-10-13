@@ -77,6 +77,34 @@ export const addComment = async (commentData: { author:string, content: string, 
     }
 }
 
+export const updateComment = async (commentData: { commentId:string, content: string, postId: string }) => {
+    try {
+        const { data } = await axiosInstance.patch('/recipes/update-comment', commentData, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        revalidateTag('recipes');
+        return data
+    } catch (error) {
+        throw new Error("Failed to update comment")
+    }
+}
+
+export const deleteComment = async ( commentData: {postId:string, commentId: string} ) => {
+    try {
+        const { data } = await axiosInstance.put(`/recipes/delete-comment`, commentData, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        revalidateTag('recipes');
+        return data
+    } catch (error) {
+        throw new Error("Failed to delete comment")
+    }
+}
+
 export const createPost = async (postData:IRecipe) => {
     try {
         const { data } = await axiosInstance.post('/recipes', postData, {

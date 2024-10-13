@@ -2,9 +2,11 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   addComment,
   createPost,
+  deleteComment,
   deleteRecipe,
   getMyRecipes,
   getRecipes,
+  updateComment,
   updatePost,
   updateVote,
 } from "../services/RecipeService";
@@ -39,6 +41,35 @@ export const useAddComment = () => {
     mutationFn: async (commentData) => await addComment(commentData),
     onSuccess: () => {
       toast.success("Comment added successfully");
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+};
+export const useUpdateComment = () => {
+  return useMutation<
+    any,
+    Error,
+    { commentId: string; content: string; postId: string }
+  >({
+    mutationKey: ["UPDATE_COMMENT"],
+    mutationFn: async (commentData) => await updateComment(commentData),
+    onSuccess: () => {
+      toast.success("Comment updated successfully");
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+};
+
+export const useDeleteComment = () => {
+  return useMutation<any, Error,{postId: string, commentId:string}>({
+    mutationKey: ["DELETE_RECIPE"],
+    mutationFn: async (data) => await deleteComment(data),
+    onSuccess: () => {
+      toast.success("Comment deleted successfully");
     },
     onError: (error) => {
       toast.error(error.message);

@@ -1,24 +1,37 @@
 "use client"
 import Select from 'react-select'
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import makeAnimated from 'react-select/animated';
 import ReusableSecondModal from '../RecipeCardWithComponents/ReusableSecondModal'
-import { SmilePlus, Video, Image as ImageHolder, TrashIcon, Plus, ImageUp, Pencil } from 'lucide-react';
+import { Image as ImageHolder, TrashIcon, Plus, Pencil } from 'lucide-react';
 import { Button } from '@nextui-org/button';
 import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
 import { IRecipe } from '@/src/types/recipe.type';
-import { zodResolver } from '@hookform/resolvers/zod';
-import envConfig from '@/src/config/envConfig';
-import { useUser } from '@/src/context/user.provider';
-import { useCreatePost, useUpdatePost } from '@/src/hooks/recipe.hook';
+import { useUpdatePost } from '@/src/hooks/recipe.hook';
 
 export const tags = [
-    { value: "cat", label: "Cat" },
-    { value: "dog", label: "Dog" },
-    { value: "elephant", label: "Elephant" },
-    { value: "lion", label: "Lion" },
-    { value: "tiger", label: "Tiger" },
-    { value: "giraffe", label: "Giraffe" },
+    { value: 'vegetarian', label: 'Vegetarian' },
+    { value: 'dairy_free', label: 'Dairy-Free' },
+    { value: 'low_carb', label: 'Low Carb' },
+    { value: 'high_protein', label: 'High Protein' },
+    { value: 'breakfast', label: 'Breakfast' },
+    { value: 'lunch', label: 'Lunch' },
+    { value: 'dinner', label: 'Dinner' },
+    { value: 'dessert', label: 'Dessert' },
+    { value: 'snack', label: 'Snack' },
+    { value: 'spicy', label: 'Spicy' },
+    { value: 'sweet', label: 'Sweet' },
+    { value: 'quick_easy', label: 'Quick & Easy' },
+    { value: 'holiday', label: 'Holiday' },
+    { value: 'seafood', label: 'Seafood' },
+    { value: 'bbq', label: 'BBQ' },
+    { value: 'grilling', label: 'Grilling' },
+    { value: 'baking', label: 'Baking' },
+    { value: 'healthy', label: 'Healthy' },
+    { value: 'asian', label: 'Asian' },
+    { value: 'italian', label: 'Italian' },
+    { value: 'mexican', label: 'Mexican' },
+    { value: 'american', label: 'American' }
 ];
 
 export const postStatus = [
@@ -26,10 +39,10 @@ export const postStatus = [
     { value: "non-premium", label: "Non-premium" }
 ];
 
-const UpdateRecipeModal = ({data}:{data:IRecipe}) => {
+const UpdateRecipeModal = ({ data }: { data: IRecipe }) => {
     // const [imageFiles, setImageFiles] = useState<File[] | []>([]);
 
-    const { mutate: handleUpdatePost} = useUpdatePost()
+    const { mutate: handleUpdatePost } = useUpdatePost()
 
     const animatedComponents = makeAnimated();
     const {
@@ -47,7 +60,7 @@ const UpdateRecipeModal = ({data}:{data:IRecipe}) => {
     useEffect(() => {
         reset(data)
     }, [data])
-    
+
 
     const { fields, append, remove } = useFieldArray({
         control,
@@ -55,7 +68,7 @@ const UpdateRecipeModal = ({data}:{data:IRecipe}) => {
     });
 
     const onSubmit: SubmitHandler<IRecipe> = async (data) => {
-        try{
+        try {
             // const uploadedImageUrls: string[] = [];
             // const files = data.image;
 
@@ -80,7 +93,7 @@ const UpdateRecipeModal = ({data}:{data:IRecipe}) => {
             console.log(payload);
 
             handleUpdatePost(payload)
-        }catch(error){
+        } catch (error) {
             console.log(error);
         }
     }
