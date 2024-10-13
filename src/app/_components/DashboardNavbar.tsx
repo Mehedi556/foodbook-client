@@ -6,10 +6,13 @@ import Link from "next/link";
 import LeftProfileSection from "./LeftProfileSection";
 import { ChefHat, House, ShieldCheck, UserRoundPen, UsersRound } from "lucide-react";
 import LogoutButton from "./LogoutButton";
+import { useUser } from "@/src/context/user.provider";
 
 
 const DashboardNavbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const {user} = useUser()
 
     const handleMenuItemClick = () => {
         setIsMenuOpen(false);
@@ -43,14 +46,21 @@ const DashboardNavbar = () => {
           <UserRoundPen className='ml-4 xl:ml-20'/>
           <p>My profile</p>
         </Link>
-        <Link onClick={handleMenuItemClick} href='/admin/manage-users' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
+        {
+          user?.role == 'admin' && <Link onClick={handleMenuItemClick} href='/admin/manage-users' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
           <UsersRound className='ml-4 xl:ml-20'/>
           <p>Manage all users</p>
         </Link>
-        <Link onClick={handleMenuItemClick} href='/admin/admin-management' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
+        }
+
+        {
+          user?.role == 'admin' && <Link onClick={handleMenuItemClick} href='/admin/admin-management' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
           <ShieldCheck className='ml-4 xl:ml-20'/>
           <p>Admin management</p>
         </Link>
+        }
+        
+        
         <LogoutButton />
       </div>
     </div>

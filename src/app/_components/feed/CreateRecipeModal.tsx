@@ -11,14 +11,31 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import envConfig from '@/src/config/envConfig';
 import { useUser } from '@/src/context/user.provider';
 import { useCreatePost } from '@/src/hooks/recipe.hook';
+import { recipeSchema } from '@/src/schemas/recipe.schema';
 
 export const tags = [
-    { value: "cat", label: "Cat" },
-    { value: "dog", label: "Dog" },
-    { value: "elephant", label: "Elephant" },
-    { value: "lion", label: "Lion" },
-    { value: "tiger", label: "Tiger" },
-    { value: "giraffe", label: "Giraffe" },
+    { value: 'vegetarian', label: 'Vegetarian' },
+    { value: 'dairy_free', label: 'Dairy-Free' },
+    { value: 'low_carb', label: 'Low Carb' },
+    { value: 'high_protein', label: 'High Protein' },
+    { value: 'breakfast', label: 'Breakfast' },
+    { value: 'lunch', label: 'Lunch' },
+    { value: 'dinner', label: 'Dinner' },
+    { value: 'dessert', label: 'Dessert' },
+    { value: 'snack', label: 'Snack' },
+    { value: 'spicy', label: 'Spicy' },
+    { value: 'sweet', label: 'Sweet' },
+    { value: 'quick_easy', label: 'Quick & Easy' },
+    { value: 'holiday', label: 'Holiday' },
+    { value: 'seafood', label: 'Seafood' },
+    { value: 'bbq', label: 'BBQ' },
+    { value: 'grilling', label: 'Grilling' },
+    { value: 'baking', label: 'Baking' },
+    { value: 'healthy', label: 'Healthy' },
+    { value: 'asian', label: 'Asian' },
+    { value: 'italian', label: 'Italian' },
+    { value: 'mexican', label: 'Mexican' },
+    { value: 'american', label: 'American' }
 ];
 
 export const postStatus = [
@@ -44,7 +61,7 @@ const CreateRecipeModal = () => {
         control,
         formState: { errors },
     } = useForm<IRecipe>({
-        //  resolver: zodResolver() 
+        resolver: zodResolver(recipeSchema) 
     });
 
     const { fields, append, remove } = useFieldArray({
@@ -174,6 +191,11 @@ const CreateRecipeModal = () => {
                                             </Button>
                                         </div>
                                     ))}
+                                    {
+                                        errors?.ingredients && (
+                                            <p className="text-xs text-red-400 font-bold">{errors?.ingredients?.message as string}</p>
+                                        )
+                                    }
                                 </div>
 
                                 <div className="mt-[-10px]">
@@ -201,8 +223,8 @@ const CreateRecipeModal = () => {
                                         }}
                                     />
                                     {
-                                        errors?.title && (
-                                            <p className="text-xs text-red-400 font-bold">{errors?.title?.message}</p>
+                                        errors?.tags && (
+                                            <p className="text-xs text-red-400 font-bold">{errors?.tags?.message}</p>
                                         )
                                     }
                                 </div>
@@ -217,8 +239,8 @@ const CreateRecipeModal = () => {
                                         }}
                                     />
                                     {
-                                        errors?.title && (
-                                            <p className="text-xs text-red-400 font-bold">{errors?.title?.message}</p>
+                                        errors?.postStatus && (
+                                            <p className="text-xs text-red-400 font-bold">{errors?.postStatus?.message}</p>
                                         )
                                     }
                                 </div>

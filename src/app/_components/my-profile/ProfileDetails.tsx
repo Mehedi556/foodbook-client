@@ -112,13 +112,16 @@ const ProfileDetails = ({ userData }: { userData: IUser }) => {
                 <div className="flex items-center space-x-6">
                     {/* Profile Picture */}
                     <div className="relative">
-                        <Image
-                            src={profileImage!}
+                        <div className="h-[120px]">
+                            <Image
+                            src={profileImage || 'https://i.ibb.co.com/DfRxRqt/rb-4707.png'}
                             alt="Profile"
-                            className="rounded-full border-5 border-fuchsia-600 object-cover object-center"
+                            className="rounded-full border-5 border-fuchsia-600 object-cover object-center w-ful h-full"
                             width={120}
                             height={120}
                         />
+                        </div>
+                        
                         {/* Change Profile Picture Button */}
                         <label htmlFor="profilePicture" className="absolute -bottom-2 -right-2 bg-solid text-white px-3 py-3 rounded-full cursor-pointer">
                             <Pencil />

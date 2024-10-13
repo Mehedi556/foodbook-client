@@ -3,6 +3,9 @@ import envConfig from "@/src/config/envConfig"
 import axiosInstance from "@/src/lib/AxiosInstance"
 import { IRecipe } from "@/src/types/recipe.type"
 import { revalidateTag } from "next/cache"
+import { cookies, headers } from "next/headers"
+
+
 
 export const getRecipes = async (searchTerm:string) => {
     console.log(searchTerm);
@@ -26,7 +29,14 @@ export const getRecipes = async (searchTerm:string) => {
 }
 
 export const getMyRecipes = async (_id:string) => {
+    const cookieStore = cookies();
+    const accessToken = cookieStore.get("accessToken")?.value;
     const fetchOptions = {
+        method: 'GET',
+        headers: {
+            "Authorization": `Bearer ${accessToken}`,
+            "Content-Type": "application/json"
+        },
         cache: "no-store",
         next: {
             tags: ["my-recipes"]
@@ -38,7 +48,14 @@ export const getMyRecipes = async (_id:string) => {
 }
 
 export const getRecipeDetails = async (_id:string) => {
+    const cookieStore = cookies();
+    const accessToken = cookieStore.get("accessToken")?.value;
     const fetchOptions = {
+        method: 'GET',
+        headers: {
+            "Authorization": `Bearer ${accessToken}`,
+            "Content-Type": "application/json"
+        },
         cache: "no-store",
         next: {
             tags: ["recipe-details"]
@@ -114,8 +131,8 @@ export const createPost = async (postData:IRecipe) => {
         })
         revalidateTag('recipes');
         return data
-    } catch (error) {
-        throw new Error("Failed to create post")
+    } catch (error:any) {
+        throw new Error(error?.response?.data?.message)
     }
 }
 

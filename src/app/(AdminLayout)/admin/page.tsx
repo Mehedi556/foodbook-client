@@ -25,6 +25,8 @@ const AdminLayoutPage = async () => {
 
   const { data } = await getRecipes('')
 
+  const sortedRecipes = data?.result?.sort((a: any, b: any) => b.upvotes.length - a.upvotes.length);
+
   return (
     <div className=''>
       <div className='mt-10  px-5 lg:px-20'>
@@ -65,7 +67,7 @@ const AdminLayoutPage = async () => {
 
         <div>
           {
-            data?.result?.map((recipe: IRecipe) => <RecipeCard recipe={recipe} decodedUser={decodedUser} />)
+            sortedRecipes?.map((recipe: IRecipe) => <RecipeCard recipe={recipe} decodedUser={decodedUser} />)
           }
         </div>
 

@@ -210,7 +210,7 @@ const UpdateRecipeModal = ({ data }: { data: IRecipe }) => {
                                     <Select
                                         placeholder='Post status..'
                                         className='text-black bg-gray-100 border-b-2 border-gray-300 rounded-md focus:outline-none transition duration-300 focus:border-blue-500'
-                                        defaultValue={data?.postStatus}
+                                        defaultValue={postStatus.find(option => option.value === data?.postStatus)}
                                         closeMenuOnSelect={true}
                                         options={postStatus}
                                         onChange={(value: any) => {

@@ -14,12 +14,12 @@ import RecipeCardForCommonLayout from "../_components/RecipeCardWithComponents/R
 
 
 const page = async () => {
-  const queryData = {
-    searchTerm: '',
-    filter: { filterProperty: '', filterValue: '' },
-    sortData: ''
-  }
-  const { data } = await getRecipes(queryData);
+  // const queryData = {
+  //   searchTerm: '',
+  //   filter: { filterProperty: '', filterValue: '' },
+  //   sortData: ''
+  // }
+  const { data } = await getRecipes('');
   const sortedRecipes = data?.result?.sort((a:any, b:any) => b.upvotes.length - a.upvotes.length);
   const decodedUser = await useToken()
   // console.log(decodedUser);

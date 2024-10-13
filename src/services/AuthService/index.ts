@@ -34,7 +34,7 @@ export const loginUser = async (userData:FieldValues) => {
         }
     return data;
     } catch (error:any) {
-        throw new Error(error);
+        throw new Error(error.response?.data?.message);
     }
 }
 
@@ -98,22 +98,20 @@ try {
 }
 
 export const addFollow = async (followerData: { _id:string}) => {
-  console.log(followerData);
   try {
-      const { data } = await axiosInstance.patch('/auth/follow', followerData, {
+      const { data } = await axiosInstance.put('/auth/follow', followerData, {
           headers: {
               'Content-Type': 'application/json'
           }
       })
       revalidateTag('recipes');
       return data
-  } catch (error) {
-      throw new Error("Failed to follow the user.")
+  } catch (error:any) {
+      throw new Error(error?.response?.data?.message)
   }
 }
 
 export const updateUser = async (userData:IUserForUpdate) => {
-  console.log(userData);
   try {
       const { data } = await axiosInstance.patch(`/auth/${userData?._id}`, userData, {
           headers: {
@@ -142,8 +140,9 @@ export const forgetPassword = async ( body:{email:string}) => {
     }
 
     return await res.json();
-  } catch (error) {
-    throw new Error("Failed to send email for reset password.")
+  } catch (error:any) {
+    console.log(error);
+    throw new Error(error?.response?.data?.message)
   }
 }
 
@@ -169,7 +168,14 @@ export const resetPassword = async ( body:{ _id: string, password: string }, tok
 }
 
 export const getUserData = async (_id:string) => {
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get("accessToken")?.value;
   const fetchOptions = {
+      method: 'GET',
+      headers: {
+          "Authorization": `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+      },
       cache: "no-store",
       next: {
           tags: ["my-profile"]
@@ -181,7 +187,14 @@ export const getUserData = async (_id:string) => {
 }
 
 export const getAllUsers = async () => {
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get("accessToken")?.value;
   const fetchOptions = {
+      method: 'GET',
+      headers: {
+          "Authorization": `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+      },
       cache: "no-store",
       next: {
           tags: ["all-users"]
