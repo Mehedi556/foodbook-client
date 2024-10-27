@@ -14,11 +14,17 @@ module.exports = {
         mono: ["var(--font-mono)"],
       },
       backgroundImage: {
+        solid: "#fff7e5",
         gradient: "linear-gradient(to top, #d9afd9 0%, #884D80 100%)",
         gradientSecondary: "linear-gradient(to top, #A8BFFF 0%, #884D80 100%)",
+        colorPrimary: "#FFA07A",
+        colorSecondary: "#98cd98",
       },
       colors: {
-        solid: "#884D80",
+        solid: "#fff7e5",
+        colorSolid: "#333333",
+        colorSecondary: "#98cd98",
+        colorPrimary: "#FFA07A",
       },
     },
   },

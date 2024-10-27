@@ -7,7 +7,7 @@ export default function Layout({
     children: React.ReactNode;
   }) {
     return (
-            <div className="bg-gradient-to-t from-[#d9afd9] to-[#884D80] min-h-screen text-white">
+            <div className="bg-solid min-h-screen text-colorSolid">
                 <NavbarComponent />
 
                 {children}

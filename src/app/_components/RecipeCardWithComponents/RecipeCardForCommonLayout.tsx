@@ -25,10 +25,10 @@ const RecipeCardForCommonLayout = ({ recipe }: { recipe: IRecipe }) => {
     }
 
     return (
-        <div className="w-full mx-auto my-10 rounded-lg bg-gradient-to-t from-[#A8BFFF] to-[#884D80]">
+        <div className="w-full mx-auto my-10 rounded-lg bg-colorSecondary text-colorSolid">
             <div className="flex justify-between items-center p-5 pb-0">
                 <div className="flex items-center gap-x-3">
-                    <Image src={recipe?.author?.profilePicture} width={50} height={50} alt="user profile picture" className="border rounded-full p-1" />
+                    <Image src={recipe?.author?.profilePicture} width={50} height={50} alt="user profile picture" className="border border-colorPrimary rounded-full p-1" />
                     <div>
                         <p>{recipe?.author?.name}</p>
                         <p className="text-xs">{timeAgo(recipe?.createdAt as any)}</p>
@@ -36,12 +36,12 @@ const RecipeCardForCommonLayout = ({ recipe }: { recipe: IRecipe }) => {
                 </div>
                 <Popover placement="bottom-end">
                     <PopoverTrigger className='cursor-pointer'>
-                        <Settings />
+                        <Settings className='text-colorPrimary'/>
                     </PopoverTrigger>
-                    <PopoverContent className='bg-gradientSecondary w-[200px]'>
+                    <PopoverContent className='border bg-transparent w-[200px]'>
                         <div className="w-full flex flex-col gap-y-2 py-2">
 
-                            <Link onClick={handleToast} href='/login' className="text-white mr-2 flex gap-x-2 rounded-lg w-full items-center py-2 px-2 bg-solid"><UserPlus /> <p>Follow</p></Link>
+                            <Link onClick={handleToast} href='/login' className="text-colorSolid bg-colorPrimary mr-2 flex gap-x-2 rounded-lg w-full items-center py-2 px-2 "><UserPlus /> <p>Follow</p></Link>
 
                             {/* <UpdateRecipeModal data={recipe} /> */}
 
@@ -52,7 +52,7 @@ const RecipeCardForCommonLayout = ({ recipe }: { recipe: IRecipe }) => {
                 </Popover>
             </div>
             <div className="p-5 ">
-                <p className="text-base pb-3 text-slate-200">{recipe?.description}</p>
+                <p className="text-base pb-3 text-colorSolid">{recipe?.description}</p>
                 <div className="h-[250px] sm:h-[300px] md:h-[370px] lg:h-[470px] xl:h-[570px] ">
                     <img alt="post image" src={recipe?.image[0]} className="object-center object-cover h-full w-full rounded-lg" />
                 </div>

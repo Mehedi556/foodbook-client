@@ -16,7 +16,7 @@ const timeAgo = (timestamp: string) => {
 const RecipeCard = ({ recipe, decodedUser }: { recipe: IRecipe, decodedUser:any }) => {
 
   return (
-    <div className="w-full mx-auto my-10 rounded-lg bg-gradient-to-t from-[#A8BFFF] to-[#884D80]">
+    <div className="w-full mx-auto my-10 rounded-lg bg-colorSecondary">
       <div className="flex justify-between items-center p-5 pb-0">
         <div className="flex items-center gap-x-3">
           <Image src={recipe?.author?.profilePicture} width={50} height={50} alt="user profile picture" className="border rounded-full p-1" />

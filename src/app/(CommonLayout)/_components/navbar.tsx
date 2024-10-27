@@ -24,10 +24,10 @@ const NavbarComponent = () => {
         setIsMenuOpen(false);
     };
     return (
-        <div className='min-w-full bg-[#884D80]'>
+        <div className='min-w-full bg-colorSecondary'>
             <div className='w-full'>
                 <Navbar maxWidth='xl' position='sticky'  isMenuOpen={isMenuOpen} 
-    onMenuOpenChange={setIsMenuOpen} className='bg-[#884D80]'>
+    onMenuOpenChange={setIsMenuOpen} className='bg-colorSecondary'>
                     <NavbarContent>
                         <NavbarBrand className='flex items-center gap-x-2'>
                             <Image src={logo} alt='' height={45} width={45} />
@@ -36,7 +36,7 @@ const NavbarComponent = () => {
                     </NavbarContent>
 
                     <NavbarContent className="hidden sm:flex gap-6" justify="center">
-                        <NavbarItem isActive>
+                        <NavbarItem>
                             <Link className='text-inherit' href="/">
                                 Home
                             </Link>
@@ -67,7 +67,7 @@ const NavbarComponent = () => {
                             user?.email ? (
                                 <div className="hidden md:flex gap-x-1 ">
                                     <NavbarItem className="">
-                                        <Link onClick={() => handleLogout()} href='/' className=" flex items-center text-white gap-x-2"><LogOut className='mt-0.5' /><span className=''>Log out</span></Link>
+                                        <Link onClick={() => handleLogout()} href='/' className=" flex items-center text-colorSolid gap-x-2"><LogOut className='mt-0.5 text-colorPrimary' /><span className=''>Log out</span></Link>
                                     </NavbarItem>
                                 </div>
                             )
@@ -77,9 +77,9 @@ const NavbarComponent = () => {
                                         <NavbarItem className="">
                                             <Link href='/login' className="text-inherit py-0.5">Log in</Link>
                                         </NavbarItem>
-                                        <button disabled className="text-xs text-gray-400">-or-</button>
+                                        <button disabled className="text-xs ">-or-</button>
                                         <NavbarItem className="">
-                                            <Link href='/signup' className="text-inherit border rounded-sm px-2 py-1">Sign up</Link>
+                                            <Link href='/signup' className="text-inherit border border-colorPrimary rounded-sm px-2 py-1">Sign up</Link>
                                         </NavbarItem>
                                     </div>
                                 )
@@ -96,10 +96,10 @@ const NavbarComponent = () => {
 
                             <div className='mt-10'>
                                 <div className='flex justify-center'>
-                                    <img src='https://i.ibb.co.com/7R1b3zK/logo-2.png' alt='profile picture' className='h-24 w-24 border-5 p-1 border-[#bf39ad] rounded-full ' />
+                                    <img src='https://i.ibb.co.com/7R1b3zK/logo-2.png' alt='profile picture' className='h-24 w-24 border-5 p-1 border-colorPrimary rounded-full ' />
                                     {
                                         user?.email && (
-                                            <img src={user?.profilePicture || 'https://i.ibb.co.com/mh2BTZG/user-png-33842.png'} alt='profile picture' className='border-5 border-[#bf39ad] rounded-full h-24 w-24 ml-[-20px]' />
+                                            <img src={user?.profilePicture || 'https://i.ibb.co.com/mh2BTZG/user-png-33842.png'} alt='profile picture' className='border-5 border-colorPrimary rounded-full h-24 w-24 ml-[-20px]' />
                                         )
                                     }
 
@@ -110,22 +110,22 @@ const NavbarComponent = () => {
 
 
                             <div className='mt-10 px-5 flex flex-col gap-y-3'>
-                                <Link onClick={handleMenuItemClick} href='/' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
+                                <Link onClick={handleMenuItemClick} href='/' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-colorSolid w-full bg-colorSecondary'>
                                     <House className='ml-4 xl:ml-20' />
                                     <p>Home</p>
                                 </Link>
-                                <Link onClick={handleMenuItemClick} href='/about' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
+                                <Link onClick={handleMenuItemClick} href='/about' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-colorSolid w-full bg-colorSecondary'>
                                     <UserCheck className='ml-4 xl:ml-20' />
                                     <p>About us</p>
                                 </Link>
-                                <Link onClick={handleMenuItemClick} href='/admin/my-profile' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
+                                <Link onClick={handleMenuItemClick} href='/admin/my-profile' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-colorSolid w-full bg-colorSecondary'>
                                     <Headset className='ml-4 xl:ml-20' />
                                     <p>Contact us</p>
                                 </Link>
 
                                 {
                                     user?.email && (
-                                        <Link onClick={handleMenuItemClick} href={`/${user?.role}`} className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
+                                        <Link onClick={handleMenuItemClick} href={`/${user?.role}`} className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-colorSolid w-full bg-colorSecondary'>
                                             <ChartNoAxesCombined className='ml-4 xl:ml-20' />
                                             <p>Dashboard</p>
                                         </Link>
@@ -137,8 +137,8 @@ const NavbarComponent = () => {
                                         <Link onClick={() => {
                                     handleLogout()
                                     handleMenuItemClick();
-                                } } href='/' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
-                                    <LogOut className='ml-4 xl:ml-20' />
+                                } } href='/' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-colorSolid w-full bg-colorSecondary'>
+                                    <LogOut className='ml-4 xl:ml-20 text-colorPrimary' />
                                     <p>Log out</p>
                                 </Link>
                                     )
@@ -147,7 +147,7 @@ const NavbarComponent = () => {
                                         <Link onClick={() => {
                                     handleLogout()
                                     handleMenuItemClick();
-                                } } href='/login' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
+                                } } href='/login' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-colorSolid w-full bg-colorSecondary'>
                                     <LogIn className='ml-4 xl:ml-20' />
                                     <p>Log in / Sign up</p>
                                 </Link>
