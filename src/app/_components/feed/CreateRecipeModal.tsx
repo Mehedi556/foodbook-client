@@ -137,19 +137,19 @@ const CreateRecipeModal = () => {
             size='xl'
             title='Share your recipe.'
             trigger={(onOpen) => (
-                <Button onPress={onOpen} size='lg' className='w-full bg-solid px-0'>
-                    <input type="search" id="search" className="cursor-pointer block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500" placeholder="Write a post..." />
-                    <span className="text-white absolute end-2 bottom-1.5 bg-solid  focus:outline-none font-medium rounded-lg text-sm px-4 py-2 cursor-pointer">Create</span>
+                <Button onPress={onOpen} size='lg' className='w-full bg-white px-0'>
+                    <input type="search" id="search" className="cursor-pointer block w-full p-4 ps-10 text-sm text-gray-900  rounded-lg bg-white focus:ring-colorSecondary focus:border-colorSecondary" placeholder="Write a post..." />
+                    <span className=" absolute end-2 bottom-1.5 bg-colorSecondary text-colorSolid  focus:outline-none font-medium rounded-lg text-sm px-4 py-2 cursor-pointer">Create</span>
                 </Button>
             )}
         >
             {(onClose) => (
-                <div className='w-full flex flex-col gap-y-3 '>
-                    <p className='text-white font-bold text-xl text-center'>
+                <div className='w-full flex flex-col gap-y-3 text-colorPrimary'>
+                    <p className=' font-bold text-xl text-center'>
                         Write details about your recipe here.
                     </p>
                     <div className='flex justify-center'>
-                        <div className="bg-white p-4 sm:p-8 m-3 sm:m-0 rounded-lg shadow-lg w-full overflow-y-scroll">
+                        <div className=" p-4 sm:p-8 m-3 sm:m-0 rounded-lg shadow-lg w-full overflow-y-scroll">
                             <form onSubmit={handleSubmit(onSubmit)} action="#" method="POST" className="space-y-3 sm:space-y-4 ">
                                 <div className="">
                                     <input type="text" {...register("title")}
@@ -247,7 +247,7 @@ const CreateRecipeModal = () => {
 
                                 <div className="">
                                     <div className="flex flex-col space-y-2">
-                                        <label htmlFor="image" className="cursor-pointer inline-block w-full text-center px-4 py-2 bg-gradient text-white rounded-md transition duration-300 hover:bg-blue-600">
+                                        <label htmlFor="image" className="cursor-pointer inline-block w-full text-center px-4 py-2 bg-colorSecondary rounded-md transition duration-300">
                                             <ImageUp height={25} width={25} className='mr-1 mt-[-2px] inline' /> Upload Recipe Pictures
                                         </label>
 
@@ -275,7 +275,7 @@ const CreateRecipeModal = () => {
 
                                 <button type="submit"
                                     onClick={() => handleCloseModal(onClose)}
-                                    className="w-full px-4 py-3 font-semibold text-white bg-[#884D80]  hover:bg-gradient rounded-lg  transition duration-300">Create Post</button>
+                                    className="w-full px-4 py-3 font-semibold bg-colorSecondary rounded-lg  transition duration-300">Create Post</button>
                             </form>
                         </div>
                     </div>

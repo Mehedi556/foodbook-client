@@ -6,9 +6,9 @@ const ReusableModal = ({buttonText, size='xl', title, children}:{buttonText: str
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
   return (
     <>
-    <Button variant="solid" radius="sm" className="w-full bg-[#884D80]" onPress={onOpen}>{buttonText}</Button>
+    <Button variant="solid" radius="sm" className="w-full bg-colorSecondary text-colorSolid font-semibold" onPress={onOpen}>{buttonText}</Button>
     <Modal size={size as any} isOpen={isOpen} onOpenChange={onOpenChange} className='w-full'>
-      <ModalContent className='bg-gradientSecondary w-full'>
+      <ModalContent className='bg-solid text-colorSolid w-full'>
         {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-1 text-center">{title}</ModalHeader>

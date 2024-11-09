@@ -17,7 +17,7 @@ const DeleteRecipeModal = ({ _id }: { _id: string }) => {
       size='lg' 
       title='Are you sure you want to delete this post?'
       trigger={(onOpen) => (
-        <Button variant="solid" radius="sm" className="w-full bg-[#884D80] flex items-center justify-start gap-x-2" onPress={onOpen}>
+        <Button variant="solid" radius="sm" className="w-full bg-solid text-red-600 flex items-center justify-start gap-x-2" onPress={onOpen}>
 
           <Trash2 /> <p>Delete</p>
         </Button>
@@ -25,7 +25,7 @@ const DeleteRecipeModal = ({ _id }: { _id: string }) => {
     >
       {(onClose) => (
         <div className='w-full flex flex-col gap-y-3 max-h-[300px]'>
-          <p className='text-white font-bold text-xl text-center'>
+          <p className='colorPrimary font-bold text-xl text-center'>
             Are you sure you want to delete this post?
           </p>
           <div className='flex justify-center'>

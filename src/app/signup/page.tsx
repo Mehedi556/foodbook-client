@@ -67,15 +67,15 @@ const SignupPage = () => {
       {
         isPending && <Loading />
       }
-      <div className="flex items-center justify-center min-h-screen bg-gradient">
+      <div className="flex items-center justify-center min-h-screen bg-solid">
 
-        <div className="bg-white p-4 sm:p-8 m-3 sm:m-0 rounded-lg shadow-lg w-full max-w-sm">
+        <div className="bg-white p-4 sm:p-8 m-3 sm:m-0 rounded-lg shadow-lg w-full max-w-sm shadow-colorSecondary">
           <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">Sign Up</h2>
 
           <form onSubmit={handleSubmit(onSubmit)} action="#" method="POST" className="space-y-3 sm:space-y-5">
             <div className="mb-2 space-y-1">
               <input type="text" {...register("name")}
-                className="peer w-full px-4 py-3 text-gray-900 bg-gray-100 border-b-2 border-gray-300 rounded-md focus:outline-none transition duration-300 focus:border-blue-500" placeholder="Your name..." />
+                className="peer w-full px-4 py-3 text-gray-900 bg-gray-100 border-b-2 border-gray-300 rounded-md focus:outline-none transition duration-300 focus:border-colorSecondary" placeholder="Your name..." />
               {
                 errors?.name && (
                   <p className="text-xs text-red-400 font-bold">{errors?.name?.message}</p>
@@ -85,7 +85,7 @@ const SignupPage = () => {
 
             <div className="mb-2 space-y-1">
               <input type="email" {...register("email")}
-                className="peer w-full px-4 py-3 text-gray-900 bg-gray-100 border-b-2 border-gray-300 rounded-md focus:outline-none transition duration-300 focus:border-blue-500" placeholder="Your email..." />
+                className="peer w-full px-4 py-3 text-gray-900 bg-gray-100 border-b-2 border-gray-300 rounded-md focus:outline-none transition duration-300 focus:border-colorSecondary" placeholder="Your email..." />
               {
                 errors?.email && (
                   <p className="text-xs text-red-400 font-bold">{errors?.email?.message}</p>
@@ -95,7 +95,7 @@ const SignupPage = () => {
 
             <div className="">
               <div className="flex flex-col space-y-2">
-                <label htmlFor="profilePicture" className="cursor-pointer inline-block w-full text-center px-4 py-2 bg-gradient text-white rounded-md transition duration-300 hover:bg-blue-600">
+                <label htmlFor="profilePicture" className="cursor-pointer inline-block w-full text-center px-4 py-2 bg-colorSecondary text-white rounded-md transition duration-300 hover:bg-colorSecondary">
                 <ImageUp height={25} width={25} className='mr-1 mt-[-2px] inline'/> Upload Profile Picture
                 </label>
 
@@ -119,7 +119,7 @@ const SignupPage = () => {
 
             <div className="mb-2 space-y-1">
               <input type="password" {...register("password")}
-                className="peer w-full px-4 py-3 text-gray-900  bg-gray-100 border-b-2 border-gray-300 rounded-md focus:outline-none focus:border-blue-500 transition duration-300" placeholder="Password..." />
+                className="peer w-full px-4 py-3 text-gray-900  bg-gray-100 border-b-2 border-gray-300 rounded-md focus:outline-none focus:border-colorSecondary transition duration-300" placeholder="Password..." />
               {
                 errors?.password && (
                   <p className="text-xs text-red-400 font-bold">{errors?.password?.message}</p>
@@ -128,7 +128,7 @@ const SignupPage = () => {
             </div>
 
             <button type="submit"
-              className="w-full px-4 py-3 font-semibold text-white bg-[#884D80]  hover:bg-gradient rounded-lg  transition duration-300">Sign
+              className="w-full px-4 py-3 font-semibold text-colorPrimary bg-colorSecondary  hover:bg-gradient rounded-lg  transition duration-300">Sign
               Up</button>
             <p className="text-xs font-light text-gray-500 text-center">
               Already have an account? <Link href="/login" className="text-sm font-medium text-blue-500 hover:underline ">Log In</Link>

@@ -1,68 +1,76 @@
 import React from 'react'
+import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+import logo from "@/src/assets/logo.png"
+import Image from 'next/image';
+import { Button } from '@nextui-org/button';
 
 const page = () => {
   return (
-    <div className="bg-gradient flex flex-col items-center justify-center py-16 px-6 sm:px-10 lg:px-16">
-  <div className="max-w-lg w-full space-y-10">
-    <div className="text-center">
-      <h2 className="text-4xl font-extrabold text-white">We'd Love to Hear from You!</h2>
-      <p className="mt-3 text-lg text-gray-200">
-        Got a question, feedback, or just want to say hello? Drop us a message and we’ll get back to you as soon as possible!
-      </p>
+    <div className="flex flex-col items-center min-h-screen py-12 px-4 lg:px-0">
+
+      {/* Logo Section */}
+      <div className="mb-12 text-center">
+        <Image src={logo} alt="FoodBook Logo" className="h-28 w-28 mx-auto" />
+        <h1 className="text-3xl font-bold text-colorSolid mt-4">Contact FoodBook</h1>
+        <p className="text-colorSolid mt-2">We’re here to help with any questions, feedback, or suggestions!</p>
+      </div>
+
+      {/* Contact Information and Form Container */}
+      <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+        {/* Left Side - Contact Information */}
+        <div className="flex flex-col items-center lg:items-start lg:text-left bg-colorSecondary p-10 rounded-xl shadow-md space-y-6">
+          <h2 className="text-2xl font-semibold text-colorSolid">Get in Touch</h2>
+          <p className="text-colorSolid">
+            We'd love to hear from you! Reach out via any of the methods below, and we’ll respond as soon as possible.
+          </p>
+
+          {/* Contact Details */}
+          <div className="space-y-4 text-colorSolid">
+            <p className="flex items-center space-x-2">
+              <FaMapMarkerAlt size={20} className="text-orange-600" />
+              <span>45 Culinary St, Food City, USA</span>
+            </p>
+            <p className="flex items-center space-x-2">
+              <FaEnvelope size={20} className="text-orange-600" />
+              <span>contact@foodbook.com</span>
+            </p>
+            <p className="flex items-center space-x-2">
+              <FaPhone size={20} className="text-orange-600" />
+              <span>+1 234 567 890</span>
+            </p>
+          </div>
+
+          {/* Social Media Links */}
+          <div className="flex space-x-4 text-orange-700 mt-6">
+            <a href="#" className="hover:text-orange-800"><FaFacebook size={24} /></a>
+            <a href="#" className="hover:text-orange-800"><FaInstagram size={24} /></a>
+            <a href="#" className="hover:text-orange-800"><FaTwitter size={24} /></a>
+          </div>
+        </div>
+
+        {/* Right Side - Contact Form */}
+        <div className="bg-white p-10 rounded-xl shadow-lg space-y-6 shadow-colorSecondary">
+          <h2 className="text-2xl font-semibold text-colorSolid text-center">Send Us a Message</h2>
+          <p className="text-colorSolid text-center">Let us know your questions, comments, or suggestions!</p>
+          <form className="space-y-4">
+            <input type="text"
+              className="peer w-full px-4 py-3 text-gray-900 bg-gray-100 border-b-2 border-gray-300 rounded-md focus:outline-none transition duration-300 focus:border-colorSecondary" placeholder="Your Name" />
+            <input type="email"
+              className="peer w-full px-4 py-3 text-gray-900 bg-gray-100 border-b-2 border-gray-300 rounded-md focus:outline-none transition duration-300 focus:border-colorSecondary" placeholder="Your Email" />
+            
+            <textarea
+              placeholder="Your Message"
+              className="peer w-full px-4 py-3 text-gray-900 bg-gray-100 border-b-2 border-gray-300 rounded-md focus:outline-none transition duration-300 focus:border-colorSecondary"
+            // rows="5"
+            />
+            <Button className="w-full bg-colorSecondary text-lg text-colorSolid py-3 rounded-lg font-semibold transition duration-300">
+              Send Message
+            </Button>
+          </form>
+        </div>
+      </div>
     </div>
-
-    <form className="bg-gradientSecondary p-8 rounded-xl shadow-lg space-y-6">
-      <div>
-        <label className="block text-sm font-semibold text-gray-200">Your Name</label>
-        <input
-          className="mt-1 w-full px-4 py-3 bg-solid rounded-lg shadow-sm placeholder-gray-200 focus:outline-none sm:text-sm"
-          placeholder="Enter your name"
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm font-semibold text-gray-200">Your Email</label>
-        <input
-          className="mt-1 w-full px-4 py-3 bg-solid rounded-lg shadow-sm placeholder-gray-200 focus:outline-none sm:text-sm"
-          placeholder="Enter your email"
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm font-semibold text-gray-200">Subject</label>
-        <input
-          className="mt-1 w-full px-4 py-3 bg-solid rounded-lg shadow-sm placeholder-gray-200 focus:outline-none sm:text-sm"
-          placeholder="What’s this about?"
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm font-semibold text-gray-200">Your Message</label>
-        <textarea
-          className="mt-1 w-full px-4 py-3 bg-solid rounded-lg shadow-sm placeholder-gray-200 focus:outline-none sm:text-sm"
-          placeholder="Type your message here..."
-          rows={4}
-        />
-      </div>
-
-      <div>
-        <button
-          type="submit"
-          className="w-full py-3 px-6 border border-transparent text-lg font-semibold rounded-lg bg-solid text-white focus:outline-none"
-        >
-          Send Message
-        </button>
-      </div>
-    </form>
-
-    <div className="mt-12 text-center text-gray-200">
-      <h3 className="text-2xl font-bold">Get in Touch</h3>
-      <p className="mt-4">Phone: +880 123 456 789</p>
-      <p className="mt-1">Email: hello@sportsclub.com</p>
-      <p className="mt-1">Address: 123 Sports Avenue, Dhaka, Bangladesh</p>
-    </div>
-  </div>
-</div>
 
   )
 }

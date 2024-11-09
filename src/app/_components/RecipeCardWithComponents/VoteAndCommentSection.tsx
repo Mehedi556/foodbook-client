@@ -59,17 +59,17 @@ const VoteAndCommentSection = ({ comments, recipeId, upvotes, downvotes, postSta
     }
   }
   return (
-    <div className="flex justify-between p-5 pt-0 gap-x-2 pb-5">
+    <div className="flex justify-between p-5 pt-0 gap-x-2 pb-5 mt-2">
       <div className="flex-1 flex gap-x-1">
-        <button onClick={() => handleVote('up-vote')} className=" bg-[#884D80] px-3 rounded-lg" ><ArrowBigUp className='text-[30px]' stroke="white" fill={`${isIdExistsInUpvote ? 'white' : 'none'}`} /></button>
-        <button onClick={() => handleVote('down-vote')} className="bg-[#884D80] px-3 rounded-lg" ><ArrowBigDown className='text-[30px]' stroke="white" fill={`${isIdExistsInDownvote ? 'white' : 'none'}`} /></button>
+        <button onClick={() => handleVote('up-vote')} className=" bg-colorSecondary px-3 rounded-lg" ><ArrowBigUp className='text-[30px]' stroke="white" fill={`${isIdExistsInUpvote ? 'white' : 'none'}`} /></button>
+        <button onClick={() => handleVote('down-vote')} className="bg-colorSecondary px-3 rounded-lg" ><ArrowBigDown className='text-[30px]' stroke="white" fill={`${isIdExistsInDownvote ? 'white' : 'none'}`} /></button>
       </div>
       {/* <CommentModal>
       <Button variant="solid" radius="sm" className="flex-1 bg-[#884D80]">Comment <MessageSquareText size={20} fill="none" /></Button>
       </CommentModal> */}
       <div className='flex-1 flex justify-end gap-x-1'>
         {
-          shouldRenderLink && <Button onClick={handlePush} className={`px-4 py-2 rounded text-sm text-white bg-solid font-semibold flex items-center gap-x-1`}>
+          shouldRenderLink && <Button onClick={handlePush} className={`px-4 py-2 rounded text-sm text-colorPrimary bg-colorSecondary font-semibold flex items-center gap-x-1`}>
             <ListCollapse /> <span className='hidden md:block'>Details</span>
           </Button>
         }

@@ -29,32 +29,34 @@ const NavbarComponent = () => {
                 <Navbar maxWidth='xl' position='sticky'  isMenuOpen={isMenuOpen} 
     onMenuOpenChange={setIsMenuOpen} className='bg-colorSecondary'>
                     <NavbarContent>
-                        <NavbarBrand className='flex items-center gap-x-2'>
-                            <Image src={logo} alt='' height={45} width={45} />
-                            <p className="font-semibold text-inherit text-2xl">foodbook</p>
+                        <NavbarBrand>
+                            <Link href={`/`} className='flex items-center gap-x-2'>
+                                <Image src={logo} alt='' height={45} width={45} />
+                                <p className="font-semibold text-colorSolid text-2xl">foodbook</p>
+                            </Link>
                         </NavbarBrand>
                     </NavbarContent>
 
                     <NavbarContent className="hidden sm:flex gap-6" justify="center">
                         <NavbarItem>
-                            <Link className='text-inherit' href="/">
+                            <Link className='text-colorSolid font-semibold' href="/">
                                 Home
                             </Link>
                         </NavbarItem>
                         <NavbarItem >
-                            <Link href="/about" className='text-inherit'>
+                            <Link href="/about" className='text-colorSolid font-semibold'>
                                 About us
                             </Link>
                         </NavbarItem>
                         <NavbarItem>
-                            <Link className='text-inherit' href="/contact">
+                            <Link className='text-colorSolid font-semibold' href="/contact">
                                 Contact us
                             </Link>
                         </NavbarItem>
                         {
                             user?._id && (
                                 <NavbarItem>
-                                    <Link className='text-inherit' href={`/${user?.role}`}>
+                                    <Link className='text-colorSolid font-semibold' href={`/${user?.role}`}>
                                         Dashboard
                                     </Link>
                                 </NavbarItem>
@@ -67,7 +69,7 @@ const NavbarComponent = () => {
                             user?.email ? (
                                 <div className="hidden md:flex gap-x-1 ">
                                     <NavbarItem className="">
-                                        <Link onClick={() => handleLogout()} href='/' className=" flex items-center text-colorSolid gap-x-2"><LogOut className='mt-0.5 text-colorPrimary' /><span className=''>Log out</span></Link>
+                                        <Link onClick={() => handleLogout()} href='/' className=" flex items-center text-colorSolid gap-x-2 font-semibold"><LogOut className='mt-0.5 text-colorPrimary' /><span className=''>Log out</span></Link>
                                     </NavbarItem>
                                 </div>
                             )
@@ -75,11 +77,11 @@ const NavbarComponent = () => {
                                 (
                                     <div className="hidden md:flex gap-x-1 ">
                                         <NavbarItem className="">
-                                            <Link href='/login' className="text-inherit py-0.5">Log in</Link>
+                                            <Link href='/login' className="text-inherit py-0.5 font-semibold">Log in</Link>
                                         </NavbarItem>
                                         <button disabled className="text-xs ">-or-</button>
                                         <NavbarItem className="">
-                                            <Link href='/signup' className="text-inherit border border-colorPrimary rounded-sm px-2 py-1">Sign up</Link>
+                                            <Link href='/signup' className="text-inherit border border-colorPrimary rounded-sm px-2 py-1 font-semibold">Sign up</Link>
                                         </NavbarItem>
                                     </div>
                                 )

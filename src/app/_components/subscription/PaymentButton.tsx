@@ -3,6 +3,7 @@
 import { useInitiatePayment } from "@/src/hooks/payment.hook"
 import { logout } from "@/src/services/AuthService";
 import { DecodedUser } from "@/src/types/decodedUser.type";
+import { Button } from "@nextui-org/button";
 
 const generateTransactionId = (): string => {
     const timestamp = Date.now(); // Current timestamp in milliseconds
@@ -32,9 +33,9 @@ const PaymentButton = ({user}:{user:DecodedUser}) => {
         
     }
     return (
-        <button onClick={createPayment} className="w-full py-4 text-xl font-semibold text-white bg-gradient-to-r from-indigo-500 to-purple-700 rounded-full hover:shadow-lg hover:bg-purple-600 focus:outline-none transition duration-200">
+        <Button onClick={createPayment} className="w-full py-8 text-xl font-semibold text-colorPrimary bg-colorSecondary rounded-full hover:shadow-lg  focus:outline-none transition duration-200">
             Pay $100 for Subscription
-        </button>
+        </Button>
     )
 }
 

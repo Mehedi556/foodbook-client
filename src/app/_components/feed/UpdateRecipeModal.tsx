@@ -123,16 +123,16 @@ const UpdateRecipeModal = ({ data }: { data: IRecipe }) => {
             size='xl'
             title='Share your recipe.'
             trigger={(onOpen) => (
-                <Button onPress={onOpen} className="text-white mr-2 flex gap-x-2 rounded-lg w-full items-center justify-start py-2 px-2 bg-solid"><Pencil /> Update</Button>
+                <Button onPress={onOpen} className="text-colorPrimary mr-2 flex gap-x-2 rounded-lg w-full items-center justify-start py-2 px-2 bg-solid"><Pencil /> Update</Button>
             )}
         >
             {(onClose) => (
-                <div className='w-full flex flex-col gap-y-3 '>
-                    <p className='text-white font-bold text-xl text-center'>
+                <div className='w-full flex flex-col gap-y-3 text-colorPrimary'>
+                    <p className=' font-bold text-xl text-center'>
                         Write details about your recipe here.
                     </p>
                     <div className='flex justify-center'>
-                        <div className="bg-white p-4 sm:p-8 m-3 sm:m-0 rounded-lg shadow-lg w-full overflow-y-scroll">
+                        <div className=" p-4 sm:p-8 m-3 sm:m-0 rounded-lg shadow-lg w-full overflow-y-scroll">
                             <form onSubmit={handleSubmit(onSubmit)} action="#" method="POST" className="space-y-3 sm:space-y-4 ">
                                 <div className="">
                                     <input type="text" {...register("title")}
@@ -254,7 +254,7 @@ const UpdateRecipeModal = ({ data }: { data: IRecipe }) => {
 
                                 <button type="submit"
                                     onClick={() => handleCloseModal(onClose)}
-                                    className="w-full px-4 py-3 font-semibold text-white bg-[#884D80]  hover:bg-gradient rounded-lg  transition duration-300">Update Post</button>
+                                    className="w-full px-4 py-3 font-semibold text-colorPrimary bg-colorSecondary   rounded-lg  transition duration-300">Update Post</button>
                             </form>
                         </div>
                     </div>

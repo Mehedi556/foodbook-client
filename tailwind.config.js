@@ -24,7 +24,7 @@ module.exports = {
         solid: "#fff7e5",
         colorSolid: "#333333",
         colorSecondary: "#98cd98",
-        colorPrimary: "#FFA07A",
+        colorPrimary: "#333333",
       },
     },
   },

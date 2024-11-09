@@ -19,10 +19,10 @@ const ForgotPasswordModal = () => {
 
         <div className='flex flex-col gap-x-2 justify-center items-center'>
             <Image alt='' width={100} height={100} className='rounded-full' src={logo as any} />
-            <input onChange={(e) => setText(e.target.value)} value={text} className='py-3 w-full rounded-xl text-sm placeholder:text-sm placeholder:pl-3 bg-solid focus:outline-none pl-2' placeholder="Type your email.." type="text" name="" id="" />
+            <input onChange={(e) => setText(e.target.value)} value={text} className='py-3 w-full text-sm placeholder:text-sm placeholder:pl-3  text-gray-900  bg-gray-100 border-b-2 border-gray-300 rounded-md focus:outline-none focus:border-colorSecondary transition duration-300 pl-2' placeholder="Type your email.." type="text" name="" id="" />
             
         </div>
-        <button disabled={!text} onClick={handleSendEmail} className='mr-1 bg-solid text-white py-2 px-3 rounded-xl'>Send</button>
+        <button disabled={!text} onClick={handleSendEmail} className='mr-1 bg-colorSecondary font-semibold py-2 px-3 rounded-lg'>Send</button>
 
       </div>
     </ReusableModal>

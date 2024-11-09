@@ -17,7 +17,7 @@ const ReusableSecondModal = ({ size = 'xl', title, trigger, children }: Reusable
       {trigger(onOpen)}
       
       <Modal size={size as any} isOpen={isOpen} onOpenChange={onOpenChange} className='w-full'>
-        <ModalContent className='bg-gradientSecondary w-full'>
+        <ModalContent className='bg-solid text-colorPrimary w-full'>
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1 text-center">{title}</ModalHeader>

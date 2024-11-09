@@ -67,7 +67,7 @@ const CreateAdminModal = () => {
       size='lg' 
       title='Create New Admin'
       trigger={(onOpen) => (
-        <Button variant="solid" radius="sm" className="w-full bg-[#884D80] flex items-center justify-start gap-x-2" onPress={onOpen}>
+        <Button variant="solid" radius="sm" className="w-full bg-colorSecondary text-colorPrimary flex items-center justify-start gap-x-2" onPress={onOpen}>
 
           <UserRoundPlus /> <p>Create</p>
         </Button>
@@ -75,17 +75,17 @@ const CreateAdminModal = () => {
     >
       {(onClose) => (
         <div className='w-full flex flex-col gap-y-3 '>
-          <p className='text-white font-bold text-xl text-center'>
+          <p className='text-colorPrimary font-bold text-xl text-center'>
             Provide Admin Details here...
           </p>
           <>
       {
         isPending && <Loading />
       }
-      <div className="flex items-center justify-center ">
+      <div className="flex items-center justify-center text-colorPrimary">
 
-        <div className="bg-white p-4 sm:p-8 m-3 sm:m-0 rounded-lg shadow-lg w-full ">
-          <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">Create New Admin</h2>
+        <div className=" p-4 sm:p-8 m-3 sm:m-0 rounded-lg shadow-lg w-full ">
+          <h2 className="text-2xl font-bold mb-6 text-center">Create New Admin</h2>
 
           <form onSubmit={handleSubmit(onSubmit)} action="#" method="POST" className="space-y-3 sm:space-y-5">
             <div className="mb-2 space-y-1">
@@ -110,7 +110,7 @@ const CreateAdminModal = () => {
 
             <div className="">
               <div className="flex flex-col space-y-2">
-                <label htmlFor="profilePicture" className="cursor-pointer inline-block w-full text-center px-4 py-2 bg-gradient text-white rounded-md transition duration-300 hover:bg-blue-600">
+                <label htmlFor="profilePicture" className="cursor-pointer inline-block w-full text-center px-4 py-2 bg-colorSecondary text-colorPrimary rounded-md transition duration-300 ">
                 <ImageUp height={25} width={25} className='mr-1 mt-[-2px] inline'/> Upload Profile Picture
                 </label>
 
@@ -144,7 +144,7 @@ const CreateAdminModal = () => {
 
             <button type="submit"
                 onClick={() => handleCloseModal(onClose)}
-              className="w-full px-4 py-3 font-semibold text-white bg-[#884D80]  hover:bg-gradient rounded-lg  transition duration-300">Create admin</button>
+              className="w-full px-4 py-3 font-semibold text-colorPrimary bg-colorSecondary  rounded-lg  transition duration-300">Create admin</button>
           </form>
         </div>
 

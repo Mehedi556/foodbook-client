@@ -16,7 +16,7 @@ const FollowButton = ({followerId, followers}:{ followerId: string, followers: s
         addFollow({_id: followerId})
     }
   return (
-    <button onClick={handleFollow} className="text-white mr-2 flex gap-x-2 rounded-lg w-full items-center py-2 px-2 bg-solid"><UserPlus /> {isFollowing ? <p>Unfollow</p> : <p>Follow</p>}</button>
+    <button onClick={handleFollow} className="text-colorPrimary mr-2 flex gap-x-2 rounded-lg w-full items-center py-2 px-2 bg-solid"><UserPlus /> {isFollowing ? <p>Unfollow</p> : <p>Follow</p>}</button>
   )
 }
 

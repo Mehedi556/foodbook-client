@@ -12,7 +12,7 @@ const MyRecipes = async () => {
   return (
     <div className=''>
       <div className='mt-10 px-5 lg:px-20'>
-        <h1 className='font-bold text-2xl text-white text-left'>My recipes</h1>
+        <h1 className='font-bold text-2xl text-colorPrimary text-left'>My recipes</h1>
 
         <div>
           {

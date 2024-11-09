@@ -43,14 +43,14 @@ const UpdateAdminModal = ({ userData }: { userData: IUser }) => {
             size='lg'
             title='Update Admin'
             trigger={(onOpen) => (
-                <Button  className={`px-4 py-2 rounded text-sm text-green-600 bg-solid font-semibold `} onPress={onOpen}>
+                <Button  className={`px-4 py-2 rounded text-sm text-green-600 bg-colorSecondary font-semibold `} onPress={onOpen}>
                     <Pencil />
                 </Button>
             )}
         >
             {(onClose) => (
-                <div className='w-full flex flex-col gap-y-3 '>
-                    <p className='text-white font-bold text-xl text-center'>
+                <div className='w-full flex flex-col gap-y-3 text-colorPrimary'>
+                    <p className=' font-bold text-xl text-center'>
                         Update Admin Details here...
                     </p>
                     <>
@@ -59,33 +59,33 @@ const UpdateAdminModal = ({ userData }: { userData: IUser }) => {
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 w-full">
                 {/* Name Input */}
                 <div>
-                    <label className="block text-white">Name</label>
+                    <label className="block ">Name</label>
                     <input
                         type="text"
                         placeholder="Your Name"
-                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-solid"
+                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-white"
                         {...register('name', { required: true })}
                     />
                 </div>
 
                 {/* Email Input */}
                 <div>
-                    <label className="block text-white">Email</label>
+                    <label className="block ">Email</label>
                     <input
                         type="email"
                         placeholder="Your Email"
-                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-solid"
+                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-white"
                         {...register('email', { required: true })}
                     />
                 </div>
 
                 {/* Bio Input */}
                 <div>
-                    <label className="block text-white">Bio</label>
+                    <label className="block ">Bio</label>
                     <textarea
                         rows={4}
                         placeholder="Tell us a little about yourself..."
-                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-solid"
+                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-white"
                         {...register('bio')}
                     />
                 </div>
@@ -95,7 +95,7 @@ const UpdateAdminModal = ({ userData }: { userData: IUser }) => {
                     <button
                     onClick={() => handleCloseModal(onClose)}
                         type="submit"
-                        className="w-full px-4 py-2 bg-solid text-white rounded-lg hover:bg-gradient transition-colors duration-300"
+                        className="w-full px-4 py-2 bg-colorSecondary text-colorPrimary rounded-lg transition-colors duration-300"
                     >
                         Update
                     </button>

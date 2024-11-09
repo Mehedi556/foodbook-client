@@ -7,8 +7,8 @@ const page = async ({ params }: { params: { recipeId: string } }) => {
   // console.log(data);
 
   return (
-    <div className="min-h-screen bg-gradientSecondary p-4 md:p-8">
-      <div className="max-w-6xl mx-auto bg-gradientSecondary shadow-xl rounded-lg overflow-hidden">
+    <div className="min-h-screen p-4 md:p-8 text-colorPrimary">
+      <div className="max-w-6xl mx-auto shadow-xl shadow-colorSecondary rounded-lg overflow-hidden">
         {/* Image Section */}
         <div className="relative h-64 md:h-96 w-full">
           <img
@@ -17,7 +17,7 @@ const page = async ({ params }: { params: { recipeId: string } }) => {
             className="object-cover w-full h-full"
           />
           <div className="absolute inset-0 bg-black bg-opacity-30 flex justify-between items-end p-4">
-            <h1 className="text-3xl text-white font-bold">{data?.title}</h1>
+            <h1 className="text-3xl font-bold p-5 bg-white opacity-60 rounded-xl">{data?.title}</h1>
             <span className="bg-yellow-500 text-black text-sm px-3 py-1 rounded-full">
               {data?.postStatus}
             </span>
@@ -27,9 +27,9 @@ const page = async ({ params }: { params: { recipeId: string } }) => {
         {/* Content Section */}
         <div className="p-6 md:p-10">
         <div className="mb-4">
-              <h2 className="text-2xl font-semibold mb-1 text-white">Description</h2>
+              <h2 className="text-2xl font-semibold mb-1">Description</h2>
               <div className="">
-                <p className="text-gray-200">
+                <p className="">
                   {data?.description}
                 </p>
 
@@ -41,7 +41,7 @@ const page = async ({ params }: { params: { recipeId: string } }) => {
               <h2 className="text-2xl font-semibold mb-4">Ingredients</h2>
               <ul className="space-y-2">
                 {data?.ingredients.map((ingredient: string, index: number) => (
-                  <li key={index} className="text-white">
+                  <li key={index} className="">
                     {ingredient}
                   </li>
                 ))}
@@ -52,7 +52,7 @@ const page = async ({ params }: { params: { recipeId: string } }) => {
             <div className="md:w-1/2">
               <h2 className="text-2xl font-semibold mb-4">Instructions</h2>
               <div className="space-y-4">
-                <p className="text-white">
+                <p className="">
                   {data?.instructions}
                 </p>
 
@@ -66,14 +66,14 @@ const page = async ({ params }: { params: { recipeId: string } }) => {
               {data?.tags.map((tag: string, index: number) => (
                 <span
                   key={index}
-                  className="bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full"
+                  className="bg-colorSecondary text-colorPrimary text-sm px-3 py-1 rounded-full"
                 >
                   {tag}
                 </span>
               ))}
             </div>
             <div>
-              <p className="text-white text-sm mt-3 lg:mt-0">
+              <p className=" text-sm mt-3 lg:mt-0">
                 Recipe by: <span className="font-semibold">{data?.author?.name}</span>
               </p>
             </div>

@@ -106,8 +106,8 @@ const ProfileDetails = ({ userData }: { userData: IUser }) => {
         handleChangePassword(formData);
     }
     return (
-        <div className="w-full mx-auto bg-gradient shadow-md rounded-lg  px-5 lg:px-20 pt-10">
-            <h1 className='font-bold text-2xl text-white text-left'>Profile details</h1>
+        <div className="w-full mx-auto bg-solid shadow-md rounded-lg  px-5 lg:px-20 pt-10 text-colorPrimary">
+            <h1 className='font-bold text-2xl text-left'>Profile details</h1>
             <div className="flex flex-col sm:flex-row justify-between items-center gap-6 sm:gap-0 my-10">
                 <div className="flex items-center space-x-6">
                     {/* Profile Picture */}
@@ -116,14 +116,14 @@ const ProfileDetails = ({ userData }: { userData: IUser }) => {
                             <Image
                             src={profileImage || 'https://i.ibb.co.com/DfRxRqt/rb-4707.png'}
                             alt="Profile"
-                            className="rounded-full border-5 border-fuchsia-600 object-cover object-center w-ful h-full"
+                            className="rounded-full border-5 border-colorSecondary object-cover object-center w-ful h-full"
                             width={120}
                             height={120}
                         />
                         </div>
                         
                         {/* Change Profile Picture Button */}
-                        <label htmlFor="profilePicture" className="absolute -bottom-2 -right-2 bg-solid text-white px-3 py-3 rounded-full cursor-pointer">
+                        <label htmlFor="profilePicture" className="absolute -bottom-2 -right-2 bg-colorSecondary px-3 py-3 rounded-full cursor-pointer">
                             <Pencil />
                             <input
                                 id="profilePicture"
@@ -136,20 +136,20 @@ const ProfileDetails = ({ userData }: { userData: IUser }) => {
                     </div>
                     {/* Name and Email */}
                     <div>
-                        <h2 className="text-2xl font-bold text-white">{userData?.name}</h2>
-                        <p className="text-sm text-white">{userData?.email}</p>
+                        <h2 className="text-2xl font-bold">{userData?.name}</h2>
+                        <p className="text-sm">{userData?.email}</p>
                     </div>
                 </div>
 
                 {/* Followers and Following Count */}
                 <div className="flex space-x-8">
                     <div className="text-center">
-                        <p className="text-lg font-bold text-white">{userData?.followers?.length}</p>
-                        <p className="text-sm text-white">Followers</p>
+                        <p className="text-lg font-bold ">{userData?.followers?.length}</p>
+                        <p className="text-sm ">Followers</p>
                     </div>
                     <div className="text-center">
-                        <p className="text-lg font-bold text-white">{userData?.following?.length}</p>
-                        <p className="text-sm text-white">Following</p>
+                        <p className="text-lg font-bold ">{userData?.following?.length}</p>
+                        <p className="text-sm ">Following</p>
                     </div>
                 </div>
             </div>
@@ -158,33 +158,33 @@ const ProfileDetails = ({ userData }: { userData: IUser }) => {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 {/* Name Input */}
                 <div>
-                    <label className="block text-white">Name</label>
+                    <label className="block ">Name</label>
                     <input
                         type="text"
                         placeholder="Your Name"
-                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-solid"
+                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-white"
                         {...register('name', { required: true })}
                     />
                 </div>
 
                 {/* Email Input */}
                 <div>
-                    <label className="block text-white">Email</label>
+                    <label className="block ">Email</label>
                     <input
                         type="email"
                         placeholder="Your Email"
-                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-solid"
+                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-white"
                         {...register('email', { required: true })}
                     />
                 </div>
 
                 {/* Bio Input */}
                 <div>
-                    <label className="block text-white">Bio</label>
+                    <label className="block ">Bio</label>
                     <textarea
                         rows={4}
                         placeholder="Tell us a little about yourself..."
-                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-solid"
+                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-white placeholder:text-colorPrimary"
                         {...register('bio')}
                     />
                 </div>
@@ -193,35 +193,35 @@ const ProfileDetails = ({ userData }: { userData: IUser }) => {
                 <div>
                     <button
                         type="submit"
-                        className="w-full px-4 py-2 bg-solid text-white rounded-lg hover:bg-gradient transition-colors duration-300"
+                        className="w-full px-4 py-2 bg-colorSecondary  rounded-lg hover:bg-gradient transition-colors duration-300"
                     >
                         Update Profile
                     </button>
                 </div>
             </form>
 
-            <h1 className='font-bold text-2xl text-white text-left mt-10'>Change password</h1>
+            <h1 className='font-bold text-2xl  text-left mt-10'>Change password</h1>
 
             <form onSubmit={handleSubmitPassword} action="" className="my-5 flex flex-col gap-y-3">
                 <div>
-                    <label className="block text-white">Old Password</label>
+                    <label className="block ">Old Password</label>
                     <input
                         type="password"
                         name="oldPassword"
                         placeholder="Type your old password"
-                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-solid"
+                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-white"
                         value={formData.oldPassword}
                         onChange={handleInputChange}
                         required
                     />
                 </div>
                 <div>
-                    <label className="block text-white">New Password</label>
+                    <label className="block ">New Password</label>
                     <input
                         type="password"
                         name="newPassword"
                         placeholder="Type new password"
-                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-solid"
+                        className="w-full px-4 py-2 rounded-lg focus:outline-none bg-white"
                         value={formData.newPassword}
                         onChange={handleInputChange}
                         required
@@ -230,7 +230,7 @@ const ProfileDetails = ({ userData }: { userData: IUser }) => {
 
                 <button
                     type="submit"
-                    className="w-full px-4 py-2 bg-solid text-white rounded-lg hover:bg-gradient transition-colors duration-300"
+                    className="w-full px-4 py-2 bg-colorSecondary  rounded-lg transition-colors duration-300"
                 >
                     Change password
                 </button>

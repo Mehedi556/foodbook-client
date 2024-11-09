@@ -7,7 +7,7 @@ const MyProfilePage = async () => {
 
     const { data } = await getUserData(decodedUser?._id!)
     return (
-        <div className="min-h-screen bg-gradient flex justify-center ">
+        <div className="min-h-screen bg-solid flex justify-center ">
             <ProfileDetails userData={data} />
         </div>
     )

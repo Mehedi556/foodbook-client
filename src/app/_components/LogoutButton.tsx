@@ -14,7 +14,7 @@ const LogoutButton = () => {
         router.push('/')
     }
     return (
-            <button onClick={() => handleLogout()} className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-solid hover:text-red-500'>
+            <button onClick={() => handleLogout()} className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-colorPrimary w-full bg-colorSecondary hover:text-red-500'>
                 <LogOut className='ml-4 xl:ml-20' />
                 <p>Sign out</p>
             </button>

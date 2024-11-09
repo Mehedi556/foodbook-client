@@ -16,22 +16,22 @@ const LeftSidebar = () => {
     <div className='w-full'>
       <LeftProfileSection />
       <div className='mt-10 px-5 flex flex-col gap-y-3'>
-        <Link href={`/${user?.role}`} className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
+        <Link href={`/${user?.role}`} className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-colorPrimary w-full bg-colorSecondary'>
           <House className='ml-4 xl:ml-20' />
           <p>Feed</p>
         </Link>
-        <Link href={`/${user?.role}/my-recipes`} className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
+        <Link href={`/${user?.role}/my-recipes`} className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-colorPrimary w-full bg-colorSecondary'>
           <ChefHat className='ml-4 xl:ml-20' />
           <p>My recipes</p>
         </Link>
-        <Link href={`/${user?.role}/my-profile`} className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
+        <Link href={`/${user?.role}/my-profile`} className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-colorPrimary w-full bg-colorSecondary'>
           <UserRoundPen className='ml-4 xl:ml-20' />
           <p>My profile</p>
         </Link>
 
         {
           user?.role == 'admin' && (
-            <Link href='/admin/manage-users' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
+            <Link href='/admin/manage-users' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-colorPrimary w-full bg-colorSecondary'>
               <UsersRound className='ml-4 xl:ml-20' />
               <p>Manage all users</p>
             </Link>
@@ -40,7 +40,7 @@ const LeftSidebar = () => {
 
         {
           user?.role == 'admin' && (
-            <Link href='/admin/admin-management' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
+            <Link href='/admin/admin-management' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-colorPrimary w-full bg-colorSecondary'>
               <ShieldCheck className='ml-4 xl:ml-20' />
               <p>Admin management</p>
             </Link>
@@ -49,7 +49,7 @@ const LeftSidebar = () => {
 
         {
           user?.role == 'user' && (
-            <Link href='/user/subscription' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-white w-full bg-[#884D80]'>
+            <Link href='/user/subscription' className='flex gap-x-3 text-sm lg:text-lg py-4 rounded-xl items-center text-colorPrimary w-full bg-colorSecondary'>
               <Gem className='ml-4 xl:ml-20' />
               <p>Subscription</p>
             </Link>
